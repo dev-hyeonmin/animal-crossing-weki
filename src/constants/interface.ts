@@ -1,4 +1,4 @@
-export interface IVillagers {
+export interface IVillager {
     "url": string;
     "name": string;
     "alt_name": string;
