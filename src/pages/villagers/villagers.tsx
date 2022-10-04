@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Loading } from "../../components/loading";
 import { getPersonality, getSpecies } from "../../constants/common";
 import { IVillager } from "../../constants/interface";
 // @ts-ignore
@@ -8,6 +8,7 @@ import quote from '../../images/quote.png';
 export const Villagers = () => {
   const pageCount = 20;
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [villagers, setVillagers] = useState<IVillager[]>([]);
   
   useEffect(() => {
@@ -22,6 +23,7 @@ export const Villagers = () => {
     }).then(response => response.json())
       .then(data => {
         setVillagers(data);
+        setLoading(false);
       });
   }, []);
 
@@ -32,30 +34,34 @@ export const Villagers = () => {
   return (
     <>
       <div className="wrapper-villagers">
-        {villagers.slice(0, page * pageCount).map((villager, index) =>        
-          <Link key={villager.id + index} className="villager" to={`/villager/${villager.id}`} state={villager}>
-            <div className="vi-image" style={{backgroundImage: `url(${villager.image_url})`}}></div>
+        { !loading && 
+          villagers.slice(0, page * pageCount).map((villager, index) =>        
+            <a key={villager.id + index} className="villager" href={villager.url}>
+              <div className="vi-image" style={{backgroundImage: `url(${villager.image_url})`}}></div>
 
-            <dl className="vi-info">
-              <dd>{villager.name}</dd>
-              <dd>
-                <img src={quote} />
-                {villager.quote}
-                <img src={quote} />
-              </dd>
-              <dd>
+              <dl className="vi-info">
+                <dd>{villager.name}</dd>
+                <dd>
+                  <img src={quote} alt="quote"/>
+                  {villager.quote}
+                  <img src={quote} alt="quote"/>
+                </dd>
+                <dd>
                   <span>#{getSpecies(villager.species)}</span>
                   <span>#{getPersonality(villager.personality)}</span>
                   <span>#{villager.gender}</span>
-              </dd>
-              <dd>🎉 {villager.birthday_month} / {villager.birthday_day}</dd>
-            </dl>
-          </Link>
-        )}        
-
-        {villagers.length === 0 && 
-            <div>Not Found.</div>
+                  <span>#{villager.sign}</span>
+                </dd>
+                <dd>🎉 {villager.birthday_month} / {villager.birthday_day}</dd>
+              </dl>
+            </a>
+          )
+        }   
+        
+        {loading &&
+          <Loading />
         }
+
       </div>
 
       <div className="box-button">
