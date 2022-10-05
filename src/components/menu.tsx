@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // @ts-ignore
 import fishIcon from '../images/fishes.png';
 // @ts-ignore
@@ -22,16 +22,18 @@ export const Menu = () => {
 
     return (
         <nav>
-            <div
+            <Link
+                to="/"
                 className={ path === '/' ? "menu active" : "menu" }
                 style={{ backgroundImage: path === '/' ? `url(${villagerActiveIcon})` : `url(${villagerIcon})` }}>
                 villager
-            </div>
-            <div
-                className={ path === '/fish' ? "menu active" : "menu" }
-                style={{ backgroundImage: path === '/fish' ? `url(${fishActiveIcon})` : `url(${fishIcon})` }}>
+            </Link>
+            <Link
+                to="/fishes"
+                className={ path === '/fishes' ? "menu active" : "menu" }
+                style={{ backgroundImage: path === '/fishes' ? `url(${fishActiveIcon})` : `url(${fishIcon})` }}>
                 fish
-            </div>
+            </Link>
             <div 
                 className={ path === '/bug' ? "menu active" : "menu" }
                 style={{ backgroundImage: path === '/bug' ? `url(${bugActiveIcon})` : `url(${bugIcon})` }}>

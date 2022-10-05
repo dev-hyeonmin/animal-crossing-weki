@@ -39,3 +39,25 @@ export interface IVillager {
         "house_music_note": string;
     }
 }
+
+export interface IFishes {
+    "url": string;
+    "name": string;
+    "number": number;
+    "image_url": string;
+    "render_url": string;
+    "location": string;
+    "shadow_size": string;
+    "rarity": string;
+    "total_catch": number;
+    "sell_nook": number;
+    "sell_cj": number;
+    "tank_width": number;
+    "tank_length": number;
+    "catchphrases": [],
+    "time": string;
+    "n_availability": string;
+    "n_availability_array": [];
+    "s_availability": string;
+    "s_availability_array": [];
+}

@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Header } from '../components/header';
 import { Menu } from '../components/menu';
-import { Villagers } from '../pages/villagers/villagers';
+import { Fishes } from '../pages/fishes';
+import { Villagers } from '../pages/villagers';
 
 export const AppRouter = () => {
     return (
@@ -12,6 +13,7 @@ export const AppRouter = () => {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Villagers />} />
+                        <Route path="/fishes" element={<Fishes />} />
                     </Routes>
 
                     <Menu />

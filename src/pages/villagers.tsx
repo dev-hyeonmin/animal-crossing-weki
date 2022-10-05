@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Loading } from "../../components/loading";
-import { getPersonality, getSpecies } from "../../constants/common";
-import { IVillager } from "../../constants/interface";
+import { Loading } from "../components/loading";
+import { getPersonality, getSpecies } from "../constants/common";
+import { IVillager } from "../constants/interface";
 // @ts-ignore
-import quote from '../../images/quote.png';
+import quote from '../images/quote.png';
 
 export const Villagers = () => {
   const pageCount = 20;
