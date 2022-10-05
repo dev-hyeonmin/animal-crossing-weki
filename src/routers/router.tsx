@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Header } from '../components/header';
+import { Menu } from '../components/menu';
 import { Villagers } from '../pages/villagers/villagers';
 
 export const AppRouter = () => {
@@ -12,7 +13,9 @@ export const AppRouter = () => {
                     <Routes>
                         <Route path="/" element={<Villagers />} />
                     </Routes>
-                </BrowserRouter>
+
+                    <Menu />
+                </BrowserRouter>                
             </div>
         </div>
     );
