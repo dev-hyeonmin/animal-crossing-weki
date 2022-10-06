@@ -28,21 +28,21 @@ nav .menu.active {color: #248f81;}
 /*
 * Fishes
 */
-.wrapper-fishes {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
-.fish {display: flex; align-items: center; flex-wrap: wrap; justify-content: center; text-decoration: none; padding: 0 10px; cursor: pointer;}
-.fish:nth-child(n+2) {border-top: 1px solid rgb(211, 218, 208);}
-.fish .fish-image {width: 100px; height: 80px; background-size: auto 60px; background-position: center; background-repeat: no-repeat;}
-.fish .fish-info {width: calc(100% - 120px); margin-left: 10px; padding: 15px 15px 15px 0;}
-.fish .fish-info dd {line-height: 24px; font-size:12px;}
-.fish .fish-info dd:nth-child(1) {font-weight: bold; font-size:14px;}
-.fish .fish-info dd:nth-child(2) {position: relative; display: inline-block; line-height: 18px; margin-top: 5px; color: #786951;}
-.fish .fish-info dd span {display: inline-block; line-height: 22px; margin-right: 3px; padding: 0 10px; text-align: center; background-color: #f5c24c; border-radius: 30px; vertical-align: middle;}
-.fish .fish-detail {display: none; width: 100%; padding: 0 20px 20px;}
-.fish .fish-detail.active {display: block;}
-.fish .fish-detail dt {float: left; width: 80px; margin-top: 5px; line-height: 20px; font-size: 12px; color: #777}
-.fish .fish-detail dd {float: left; width: calc(100% - 80px); line-height: 20px; color: #777}
-.fish .fish-detail dd:nth-child(1) {width: 100%; color: #786951; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-.fish .fish-detail dd:nth-child(n+2) {margin-top: 5px;}
+.wrapper-creature {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
+.creature {display: flex; align-items: center; flex-wrap: wrap; justify-content: center; text-decoration: none; padding: 0 10px; cursor: pointer; overflow: hidden;}
+.creature:nth-child(n+2) {border-top: 1px solid rgb(211, 218, 208);}
+.creature .creature-image {width: 100px; height: 80px; background-size: auto 60px; background-position: center; background-repeat: no-repeat;}
+.creature .creature-info {width: calc(100% - 120px); margin-left: 10px; padding: 15px 15px 15px 0;}
+.creature .creature-info dd {line-height: 24px; font-size:12px;}
+.creature .creature-info dd:nth-child(1) {font-weight: bold; font-size:14px;}
+.creature .creature-info dd:nth-child(2) {position: relative; display: inline-block; line-height: 18px; margin-top: 5px; color: #786951;}
+.creature .creature-info dd span {display: inline-block; line-height: 22px; margin-right: 3px; padding: 0 10px; text-align: center; background-color: #f5c24c; border-radius: 30px; vertical-align: middle;}
+.creature .creature-detail {width: 100%; padding: 0 20px 20px; overflow: hidden;}
+.creature .creature-detail dt {float: left; width: 80px; margin-top: 5px; line-height: 20px; font-size: 12px; color: #777; padding-left: 5px;}
+.creature .creature-detail dd {float: left; width: calc(100% - 80px); line-height: 20px; color: #777}
+.creature .creature-detail dd:nth-child(1) {width: 100%; color: #786951; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.creature .creature-detail dd:nth-child(n+2) {margin-top: 5px;}
+
 
 /*
 * loading

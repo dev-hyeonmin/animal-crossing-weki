@@ -34,16 +34,18 @@ export const Menu = () => {
                 style={{ backgroundImage: path === '/fishes' ? `url(${fishActiveIcon})` : `url(${fishIcon})` }}>
                 fish
             </Link>
-            <div 
-                className={ path === '/bug' ? "menu active" : "menu" }
-                style={{ backgroundImage: path === '/bug' ? `url(${bugActiveIcon})` : `url(${bugIcon})` }}>
+            <Link
+                to="/bugs"
+                className={ path === '/bugs' ? "menu active" : "menu" }
+                style={{ backgroundImage: path === '/bugs' ? `url(${bugActiveIcon})` : `url(${bugIcon})` }}>
                 bug
-            </div>
-            <div
-                className={ path === '/sea' ? "menu active" : "menu" }
-                style={{ backgroundImage: path === '/sea' ? `url(${seaActiveIcon})` : `url(${seaIcon})` }}>
+            </Link>
+            <Link
+                to="/seas"
+                className={ path === '/seas' ? "menu active" : "menu" }
+                style={{ backgroundImage: path === '/seas' ? `url(${seaActiveIcon})` : `url(${seaIcon})` }}>
                 sea
-            </div>
+            </Link>
         </nav>
     );
 }
