@@ -8,17 +8,17 @@ const toggleVariant = {
     enable: { height: "195px" },
 }
   
-export const Bugs = () => {
+export const Seas = () => {
     const pageCount = 20;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [toggleArr, setToggleArr] = useState<Boolean[]>([]);
-    const [bugs, setBugs] = useState<IFishes[]>([]);
+    const [seas, setSeas] = useState<IFishes[]>([]);
   
     useEffect(() => {
         if (!process.env.REACT_APP_NOOKIPEIA_KEY) { return; }
     
-        fetch(`${process.env.REACT_APP_NOOKIPEIA_URL}/nh/bugs`, {
+        fetch(`${process.env.REACT_APP_NOOKIPEIA_URL}/nh/sea`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-API-KEY': process.env.REACT_APP_NOOKIPEIA_KEY,
@@ -26,7 +26,7 @@ export const Bugs = () => {
             }
         }).then(response => response.json())
             .then(data => {
-                setBugs(data);
+                setSeas(data);
                 setLoading(false);
             });
     }, []);
@@ -52,29 +52,29 @@ export const Bugs = () => {
         <>
         <div className="wrapper-creature">
             { !loading && 
-            bugs.slice(0, page * pageCount).map((bug, index) =>
-                <motion.div key={bug.number + index} className="creature" onClick={() => toggleDetail(index)}
+            seas.slice(0, page * pageCount).map((sea, index) =>
+                <motion.div key={sea.number + index} className="creature" onClick={() => toggleDetail(index)}
                     variants={toggleVariant}
                     initial="disable"
                     animate={toggleArr[index] ? "enable" : "disable"}
                     exit="disable"
                     transition={{ duration: 0.4 }}    
                 >
-                    <div className="creature-image" style={{backgroundImage: `url(${bug.image_url})`}}></div>
+                    <div className="creature-image" style={{backgroundImage: `url(${sea.image_url})`}}></div>
 
                     <dl className="creature-info">
-                        <dd>{bug.name}</dd>
-                        <dd>{bug.location}</dd>
+                        <dd>{sea.name}</dd>
+                        <dd>{sea.shadow_movement} / {sea.shadow_size}</dd>
                     </dl>
 
                     <dl className="creature-detail">
-                        <dd>{bug.catchphrases}</dd>
+                        <dd>{sea.catchphrases}</dd>
                         <dt>북반구</dt>
-                        <dd>{bug.n_availability}</dd>
+                        <dd>{sea.n_availability}</dd>
                         <dt>남반구</dt>
-                        <dd>{bug.s_availability}</dd>
+                        <dd>{sea.s_availability}</dd>
                         <dt>출몰시간</dt>
-                        <dd>{bug.time}</dd>
+                        <dd>{sea.time}</dd>
                     </dl>
                 </motion.div>
             )}   

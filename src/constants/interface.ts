@@ -60,4 +60,5 @@ export interface IFishes {
     "n_availability_array": [];
     "s_availability": string;
     "s_availability_array": [];
+    "shadow_movement": string;
 }
