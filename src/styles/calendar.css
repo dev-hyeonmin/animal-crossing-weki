@@ -1,0 +1,14 @@
+.react-calendar {padding: 20px;}
+.react-calendar .react-calendar__navigation {display: flex;}
+.react-calendar .react-calendar__navigation__label {background-color: transparent; font-size: 14px;}
+.react-calendar .react-calendar__navigation__arrow {width: 25px; height: 25px; line-height: 20px; background-color: white; box-shadow: 0px 1px 5px rgba(85,85,85,.29); border-radius: 5px; font-size: 18px; color: #4b4829;}
+.react-calendar .react-calendar__navigation__prev2-button,
+.react-calendar .react-calendar__navigation__next2-button {display: none;}
+.react-calendar__viewContainer {margin-top: 10px;}
+.react-calendar__month-view__weekdays .react-calendar__month-view__weekdays__weekday {width: 14.28%; text-align: center; margin-bottom: 10px;}
+.react-calendar__month-view__weekdays abbr {color: #bbb; font-size: 12px;}
+.react-calendar__month-view__days .react-calendar__tile {width: 14.28%; line-height: 45px; background-color: transparent; font-size: 14px; color: #4b4829; border-radius: 25px;}
+.react-calendar__month-view__days .react-calendar__tile abbr {text-align: center;}
+.react-calendar__month-view__days .react-calendar__tile--active {background-color: #248f81 !important;}
+.react-calendar__month-view__days .react-calendar__tile--active abbr {color: #fff;}
+.react-calendar__month-view__days .react-calendar__tile--now {background-color: #ededed;}

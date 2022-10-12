@@ -1,51 +1,51 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { motion } from 'framer-motion';
+import { routes } from "../routers/router";
+
 // @ts-ignore
-import fishIcon from '../images/fishes.png';
-// @ts-ignore
-import fishActiveIcon from '../images/fishes-active.png';
-// @ts-ignore
-import seaIcon from '../images/sea.png';
-// @ts-ignore
-import seaActiveIcon from '../images/sea-active.png';
-// @ts-ignore
-import bugIcon from '../images/bug.png';
-// @ts-ignore
-import bugActiveIcon from '../images/bug-active.png';
-// @ts-ignore
-import villagerIcon from '../images/villager.png';
-// @ts-ignore
-import villagerActiveIcon from '../images/villager-active.png';
+import closeMenu from '../images/close-menu.png';
+
+
+const toggleVariant = {
+    disable: { x: "-100%" },
+    enable: { x: "-50px" },
+}
 
 export const Menu = () => {
     const location = useLocation();
     const path = location.pathname;
+    const [toggleMenu, setToggleMenu] = useState(false);
 
     return (
-        <nav>
-            <Link
-                to="/"
-                className={ path === '/' ? "menu active" : "menu" }
-                style={{ backgroundImage: path === '/' ? `url(${villagerActiveIcon})` : `url(${villagerIcon})` }}>
-                villager
-            </Link>
-            <Link
-                to="/fishes"
-                className={ path === '/fishes' ? "menu active" : "menu" }
-                style={{ backgroundImage: path === '/fishes' ? `url(${fishActiveIcon})` : `url(${fishIcon})` }}>
-                fish
-            </Link>
-            <Link
-                to="/bugs"
-                className={ path === '/bugs' ? "menu active" : "menu" }
-                style={{ backgroundImage: path === '/bugs' ? `url(${bugActiveIcon})` : `url(${bugIcon})` }}>
-                bug
-            </Link>
-            <Link
-                to="/seas"
-                className={ path === '/seas' ? "menu active" : "menu" }
-                style={{ backgroundImage: path === '/seas' ? `url(${seaActiveIcon})` : `url(${seaIcon})` }}>
-                sea
-            </Link>
-        </nav>
+        <>
+            <div className="menu" onClick={() => setToggleMenu(true)}></div>
+                        
+            {true &&
+                <motion.div
+                    className={toggleMenu ? "box-menu active" : "box-menu"}
+                    key="box-menu"
+                    variants={toggleVariant}
+                    initial={"disable"}
+                    animate={toggleMenu ? "enable" : "disable"}
+                    exit={"disable"}
+                >
+                    <button onClick={() => setToggleMenu(false)}><img src={closeMenu} /></button>
+                    
+                    <dl>
+                        {routes.map((route) => 
+                            <dd key={`menu${route.name}`}>
+                                <Link
+                                    to={route.path}
+                                    className={path === route.path ? "active" : ""}
+                                >
+                                    {route.name}
+                                </Link>
+                            </dd>
+                        )}                        
+                    </dl>
+                </motion.div>
+            }
+        </>
     );
 }

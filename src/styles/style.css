@@ -2,8 +2,16 @@
 header {position: relative; height: 50px; line-height: 50px; padding: 0 20px; font-size: 14px; color: #4b4829; text-align: center; background-color: rgb(253, 251, 246); border-bottom: 1px solid rgb(211, 218, 208);}
 .content {padding: 20px 20px 80px;}
 nav {position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; z-index: 9; display: flex; background-color: rgb(245, 244, 238); border-top: 1px solid rgb(211, 218, 208);}
-nav .menu {width: 25%; line-height: 90px; text-align: center; color: rgb(75, 72, 41); font-size: 12px; cursor: pointer; background-repeat: no-repeat; background-position: center 10px; background-size: 24px; text-align: center; text-decoration: none;}
-nav .menu.active {color: #248f81;}
+nav .footer-menu {width: 25%; line-height: 90px; text-align: center; color: rgb(75, 72, 41); font-size: 12px; cursor: pointer; background-repeat: no-repeat; background-position: center 10px; background-size: 24px; text-align: center; text-decoration: none;}
+nav .footer-menu.active {color: #248f81;}
+
+.menu {position: absolute; top: 10px; left: 10px; width: 30px; height: 30px; background-image: url('../images/menu.png'); background-repeat: no-repeat; background-size: 20px; background-position: center; cursor: pointer;}
+.box-menu {position: fixed; top: 0; left: 0; width: calc(100% + 100px); height: 100%; background-color: rgb(253, 251, 246); border-right: 1px solid rgb(211, 218, 208); z-index: 9;}
+.box-menu dl {padding: 50px 0;}
+.box-menu dd a {text-decoration: none; font-size: 18px; font-weight: bold; color: rgb(75, 72, 41);}
+.box-menu dd a.active {color: #248f81;}
+.box-menu button {position: absolute; top: 10px; right: 60px; width: 30px; height: 30px; background-color: transparent; cursor: pointer;}
+.box-menu button img {width: 100%;}
 
 /*
 * Villagers
@@ -43,6 +51,16 @@ nav .menu.active {color: #248f81;}
 .creature .creature-detail dd:nth-child(1) {width: 100%; color: #786951; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .creature .creature-detail dd:nth-child(n+2) {margin-top: 5px;}
 
+/*
+* Events
+*/
+.wrapper-events {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
+.wrapper-events:nth-child(2) {margin-top: 10px; min-height: 150px;  padding: 20px;}
+.wrapper-events dl {display: flex; flex-wrap: wrap;}
+.wrapper-events dt {width: 50px; line-height: 35px; text-align: center;}
+.wrapper-events dt img {width: 26px; vertical-align: middle;}
+.wrapper-events dd {width: calc(100% - 50px); line-height: 35px;}
+.wrapper-events .loading {display: flex; height: 100px; align-items: center; justify-content: center;}
 
 /*
 * loading

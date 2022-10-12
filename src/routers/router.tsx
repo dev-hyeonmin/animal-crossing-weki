@@ -1,28 +1,56 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Header } from '../components/header';
-import { Menu } from '../components/menu';
+import { Footer } from '../components/footer';
 import { Bugs } from '../pages/bugs';
 import { Fishes } from '../pages/fishes';
 import { Seas } from '../pages/seas';
 import { Villagers } from '../pages/villagers';
+import { Events } from '../pages/events';
+
+export const routes = [
+    {
+        path: "/",
+        element: <Villagers />,
+        name: "villagers"
+    },
+    {
+        path: "/fishes",
+        element: <Fishes />,
+        name: "fishes"
+    },
+    {
+        path: "/bugs",
+        element: <Bugs />,
+        name: "bugs"
+    },
+    {
+        path: "/seas",
+        element: <Seas />,
+        name: "seas"
+    },
+    {
+        path: "/events",
+        element: <Events />,
+        name: "events"
+    },
+];
 
 export const AppRouter = () => {
     return (
-        <div className='wrapper'>
-            <Header />
+        <BrowserRouter>
+            <div className='wrapper'>
+                <Header />
 
-            <div className='content'>                
-                <BrowserRouter>
+                <div className='content'>                                    
                     <Routes>
-                        <Route path="/" element={<Villagers />} />
-                        <Route path="/fishes" element={<Fishes />} />
-                        <Route path="/bugs" element={<Bugs />} />
-                        <Route path="/seas" element={<Seas />} />
+                        {routes.map((route => 
+                            <Route key={`route${route.name}`} path={route.path} element={route.element} />                            
+                        ))}
                     </Routes>
 
-                    <Menu />
-                </BrowserRouter>                
+                    <Footer />            
+                </div>
             </div>
-        </div>
+        </BrowserRouter>
     );
 }

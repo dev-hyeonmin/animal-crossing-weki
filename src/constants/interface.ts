@@ -62,3 +62,10 @@ export interface IFishes {
     "s_availability_array": [];
     "shadow_movement": string;
 }
+
+export interface IEvents {
+    "date": string;
+    "event": string;
+    "type": string;
+    "url": string;
+}
