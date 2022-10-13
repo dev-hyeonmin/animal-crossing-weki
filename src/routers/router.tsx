@@ -6,6 +6,7 @@ import { Fishes } from '../pages/fishes';
 import { Seas } from '../pages/seas';
 import { Villagers } from '../pages/villagers';
 import { Events } from '../pages/events';
+import { Turnip } from '../pages/turnip';
 
 export const routes = [
     {
@@ -32,6 +33,11 @@ export const routes = [
         path: "/events",
         element: <Events />,
         name: "events"
+    },
+    {
+        path: "/turnip",
+        element: <Turnip />,
+        name: "turnip calculator"
     },
 ];
 

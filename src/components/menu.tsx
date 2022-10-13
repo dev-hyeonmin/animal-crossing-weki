@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import { routes } from "../routers/router";
 
@@ -17,6 +17,9 @@ export const Menu = () => {
     const path = location.pathname;
     const [toggleMenu, setToggleMenu] = useState(false);
 
+    useEffect(() => {
+        setToggleMenu(false);
+    }, [path])
     return (
         <>
             <div className="menu" onClick={() => setToggleMenu(true)}></div>

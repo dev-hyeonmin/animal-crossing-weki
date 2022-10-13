@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Loading } from "../components/loading";
-import { getPersonality, getSpecies } from "../constants/common";
+import { getPersonality, getSpecies, getVillager } from "../constants/common";
 import { IVillager } from "../constants/interface";
 // @ts-ignore
 import quote from '../images/quote.png';
@@ -40,7 +40,7 @@ export const Villagers = () => {
               <div className="vi-image" style={{backgroundImage: `url(${villager.image_url})`}}></div>
 
               <dl className="vi-info">
-                <dd>{villager.name}</dd>
+                <dd>{getVillager(villager.id, villager.name)}</dd>
                 <dd>
                   <img src={quote} alt="quote"/>
                   {villager.quote}

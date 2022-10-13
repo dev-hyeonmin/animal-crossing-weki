@@ -1,3 +1,5 @@
+import VILLAGERS from './lang/villagers.json';
+
 const SPECIES = [
     { eng: "alligator", kor: "악어" },
     { eng: "anteater", kor: "개미핥기" },
@@ -62,5 +64,14 @@ export const getPersonality = (personality: string) => {
         return findPersonality.kor;
     } else {
         return null;
+    }
+}
+
+export const getVillager = (id: string, name: string) => {
+    const findVillager = VILLAGERS.find((villager) => villager.id === id);
+    if (findVillager) {
+        return findVillager.localization.ko_KR;
+    } else {
+        return name;
     }
 }
