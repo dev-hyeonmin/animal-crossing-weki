@@ -1,4 +1,4 @@
-const PATTERN = {
+export const PATTERN = {
   FLUCTUATING: 0,
   LARGE_SPIKE: 1,
   DECREASING: 2,
@@ -917,6 +917,7 @@ export class Predictor {
     const sell_prices = this.prices;
     const first_buy = this.first_buy;
     const previous_pattern = this.previous_pattern;
+
     let generated_possibilities = [];
     for (let i = 0; i < 6; i++) {
       this.fudge_factor = i;
