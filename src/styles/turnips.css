@@ -1,0 +1,670 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Varela+Round&display=swap');
+
+/* - Variables - */
+
+:root {
+  --color-blue: #0AB5CD;
+  --color-light-blue: #5ECEDB;
+
+  --bg-color: #DEF2D9;
+  --bg-dot-color: #FFF;
+
+  --shadow-3: rgba(0, 0, 0, 0.03);
+  --shadow-5: rgba(0, 0, 0, 0.05);
+  --shadow-6: rgba(0, 0, 0, 0.06);
+  --shadow-8: rgba(0, 0, 0, 0.08);
+  --shadow-9: rgba(0, 0, 0, 0.09);
+  --shadow-10: rgba(0, 0, 0, 0.10);
+  --shadow-15: rgba(0, 0, 0, 0.16);
+  --shadow-16: rgba(0, 0, 0, 0.16);
+  --shadow-20: rgba(0, 0, 0, 0.20);
+
+  --center-bg-color: #FFF;
+
+  --wave-1: rgba(255, 255, 255, 0);
+  --wave-2: rgba(255, 255, 255, 0.2);
+  --wave-3: rgba(255, 255, 255, 0.4);
+  --wave-4: rgba(255, 255, 255, 0.6);
+
+  --nook-phone-bg-color: #F5F8FF;
+  --nook-phone-text-color: #686868;
+
+  --dialog-bg-color: #FFFAE5;
+  --dialog-text-color: #837865;
+
+  --dialog-name-bg-color: #FF9A40;
+  --dialog-name-text-color: #BA3B1F;
+
+  --chart-fill-color: var(--bg-color);
+  --chart-line-color: rgba(0, 0, 0, 0.1);
+  --chart-point-color: rgba(0, 0, 0, 0.1);
+
+  --select-text-color: var(--dialog-text-color);
+  --select-border-color: var(--bg-color);
+  --select-bg-color-hover: #EBFEFD;
+
+  --italic-color: #AAA;
+
+  --form-h6-text-color: #845E44;
+
+  --radio-hover-bg-color: var(--nook-phone-bg-color);
+  --radio-checked-text-color: #FFF;
+
+  --input-bg-color: #F3F3F3;
+  --input-focus-bg-color: white;
+  --input-focus-text-color: var(--color-blue);
+
+  --input-now-bg-color: var(--dialog-name-bg-color);
+  --input-now-text-color: var(--dialog-name-text-color);
+
+  --button-text-color: var(--nook-phone-text-color);
+  --button-reset-text-color: #E45B5B;
+
+  --table-range0: hsl(140, 80%, 85%);
+  --table-range1: hsl(90, 80%, 85%);
+  --table-range2: hsl(60, 80%, 85%);
+  --table-range3: hsl(30, 80%, 85%);
+  --table-range4: hsl(0, 80%, 85%);
+}
+
+[data-theme="dark"] {
+  --bg-color: #1A1A1A;
+  --bg-dot-color: #222;
+
+  --shadow-3: rgba(255, 255, 255, 0.03);
+  --shadow-15: rgba(255, 255, 255, 0.03);
+
+  --center-bg-color: #101010;
+
+  --wave-1: rgba(16, 16, 16, 0);
+  --wave-2: rgba(16, 16, 16, 0.2);
+  --wave-3: rgba(16, 16, 16, 0.4);
+  --wave-4: rgba(16, 16, 16, 0.6);
+
+  --nook-phone-bg-color: #000F33;
+  --nook-phone-text-color: #CCC;
+
+  --dialog-bg-color: #252422;
+  --dialog-text-color: #BCB5A9;
+
+  --dialog-name-bg-color: #BA3B1F;
+  --dialog-name-text-color: #FF9A40;
+
+  --chart-fill-color: #2D5F21;
+  --chart-line-color: rgba(200, 200, 200, 0.4);
+  --chart-point-color: rgba(200, 200, 200, 0.6);
+
+  --select-text-color: #837865;
+  --select-border-color: var(--bg-color);
+  --select-bg-color-hover: #EBFEFD;
+
+  --italic-color: #666;
+
+  --form-h6-text-color: #E18B51;
+
+  --radio-hover-bg-color: #00174D;
+  --radio-checked-text-color: #FFF;
+
+  --input-bg-color: #333;
+  --input-focus-bg-color: #999;
+  --input-focus-text-color: var(--radio-hover-bg-color);
+
+  --button-text-color: var(--nook-phone-text-color);
+  --button-reset-text-color: #E45B5B;
+
+  --table-range0: hsl(140, 80%, 27%);
+  --table-range1: hsl(90, 80%, 20%);
+  --table-range2: hsl(60, 80%, 20%);
+  --table-range3: hsl(30, 80%, 20%);
+  --table-range4: hsl(0, 80%, 22%);
+}
+
+/* - Global Styles - */
+
+html {
+  font-size: 14px;
+  background: var(--bg-color);
+  background-image:
+    radial-gradient(var(--bg-dot-color) 20%, transparent 0),
+    radial-gradient(var(--bg-dot-color) 20%, transparent 0);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Varela Round', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.nook-phone {
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+  margin: 16px auto;
+  border-radius: 40px;
+  padding: 16px 0px;
+  padding-bottom: 16px;
+  background: var(--nook-phone-bg-color);
+  color: var(--nook-phone-text-color);
+  overflow: hidden;
+  box-shadow: 0 1px 3px var(--shadow-6), 0 1px 2px var(--shadow-8);
+}
+
+.nook-phone-center {
+  background: var(--center-bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog-box {
+  background: var(--dialog-bg-color);
+  box-sizing: border-box;
+  padding: 16px 24px;
+  margin: 32px auto;
+  position: relative;
+  border-radius: 40px;
+  max-width: 800px;
+  box-shadow: 0 1px 3px var(--shadow-6), 0 1px 2px var(--shadow-8);
+}
+
+.dialog-box-option {
+  text-align: center;
+}
+
+.dialog-box-option p,
+.dialog-box-option select {
+  display: inline;
+}
+
+.dialog-box-option select {
+  font-size: 1rem;
+  padding: 4px;
+  font-weight: bold;
+  border-radius: 4px;
+  border-color: var(--select-border-color);
+  color: var(--select-text-color);
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.dialog-box-option select:hover {
+  background-color: var(--select-bg-color-hover);
+  border-color: var(--color-light-blue);
+  box-shadow: 0 2px 4px var(--shadow-16);
+}
+
+.dialog-box-option select:focus {
+  outline: none;
+}
+
+.dialog-box p,
+.dialog-box label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--dialog-text-color);
+  letter-spacing: 0.2px;
+  line-height: 1.8rem;
+}
+
+.dialog-box b,
+.dialog-box a {
+  color: var(--color-blue);
+  transition: 0.2s all;
+}
+
+.dialog-box i {
+  font-style: normal;
+  color: var(--italic-color);
+}
+
+.dialog-box a:hover {
+  color: var(--color-light-blue);
+}
+
+.dialog-box .dialog-box__name {
+  position: absolute;
+  left: 16px;
+  top: -28px;
+  font-size: 1rem;
+  color: var(--dialog-name-text-color);
+  padding: 4px 16px;
+  background: var(--dialog-name-bg-color);
+  border-radius: 40px;
+}
+
+.dialog-box.error {
+  display: none;
+}
+
+.input__form {
+  background: var(--center-bg-color);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  align-items: center;
+}
+
+.form__row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__row h6 {
+  width: 100%;
+  display: block;
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin: 8px auto;
+  color: var(--form-h6-text-color);
+  text-align: center;
+}
+
+.form__flex-wrap {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1080px;
+  justify-content: center;
+}
+
+.input__group {
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+  align-items: center;
+}
+
+.input__group label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.form__flex-wrap .input__group label {
+  margin-left: 0px;
+  margin-bottom: 8px;
+}
+
+.input__form i {
+  text-align: center;
+  display: block;
+  font-style: normal;
+  color: var(--italic-color);
+  font-size: 0.9rem;
+  margin: 8px auto;
+}
+
+.input__form>.form__row input {
+  margin: 0px auto;
+}
+
+input {
+  border: 0px solid white;
+  border-radius: 40px;
+  padding: 8px 16px;
+  font-size: 1.25rem;
+  font-family: inherit;
+  color: inherit;
+  font-weight: bold;
+  transition: 0.2s all;
+  margin: 8px 0px;
+}
+
+input[type=number]:placeholder-shown {
+  background: var(--input-bg-color);
+}
+
+input[type=number]:not(:placeholder-shown) {
+  background: transparent;
+  color: var(--color-blue);
+}
+
+input[type=number]:placeholder-shown:hover {
+  cursor: pointer;
+  background: var(--radio-hover-bg-color);
+  transform: scale(1.1);
+  box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
+}
+
+input[type=number]:focus {
+  outline: none;
+  transform: scale(1.1);
+  color: var(--input-focus-text-color);
+  background: var(--input-focus-bg-color);
+  box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
+}
+
+input[type=number]:focus::placeholder {
+  opacity: 0;
+}
+
+input[type=number] {
+  width: 60px;
+  text-align: center;
+}
+
+input[type=number]:disabled {
+  background: inherit;
+}
+
+input[type=number]:disabled:hover {
+  box-shadow: none;
+  transform: none;
+  cursor: default;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.input__radio-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.input__radio-buttons input[type=radio] {
+  display: none;
+}
+
+.input__radio-buttons input[type="radio"]+label {
+  opacity: 1;
+  border: none;
+  border-radius: 40px;
+  background: var(--input-bg-color);
+  padding: 8px 16px;
+  font-size: 1.25rem;
+  font-family: inherit;
+  font-weight: bold;
+  transition: 0.2s all;
+  margin: 8px;
+}
+
+.input__radio-buttons input[type="radio"]:not(:checked)+label:hover {
+  cursor: pointer;
+  background: var(--radio-hover-bg-color);
+  transform: scale(1.1);
+  box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
+}
+
+.input__radio-buttons input[type="radio"]:checked+label {
+  background: var(--color-blue);
+  color: var(--radio-checked-text-color);
+}
+
+input[class=now]:placeholder-shown {
+  background: var(--input-now-bg-color);
+}
+
+input[class=now]:placeholder-shown::placeholder {
+  color: var(--input-now-text-color);
+}
+
+.button {
+  color: var(--button-text-color);
+  font-family: inherit;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-width: 0px;
+  border-radius: 40px;
+  background: var(--input-bg-color);
+  font-size: 1.2rem;
+  transition: 0.2s all;
+  position: relative;
+  margin: 16px auto;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  background: var(--radio-hover-bg-color);
+  opacity: 1;
+  box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
+}
+
+.button.button--reset {
+  color: var(--button-reset-text-color);
+}
+
+.table-wrapper {
+  display: inline-block;
+  max-width: 98%;
+  padding: 16px;
+  margin: 0px auto;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+@media only screen and (max-width: 1440px) and (pointer: fine) {
+  .table-wrapper {
+    max-height: calc(75vh - 40px);
+  }
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 8px;
+  width: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  height: 8px;
+  width: 5px;
+  box-shadow: inset 0 0 6px var(--shadow-20);
+  -webkit-box-shadow: inset 0 0 6px var(--shadow-20);
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  height: 8px;
+  width: 5px;
+  background: var(--shadow-20);
+  box-shadow: inset 0 0 6px var(--shadow-20);
+  -webkit-box-shadow: inset 0 0 6px var(--shadow-10);
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:window-inactive {
+  height: 8px;
+  width: 5px;
+  background: var(--shadow-20);
+}
+
+#turnipTable {
+  border-collapse: collapse;
+}
+
+#turnipTable th div:nth-of-type(1) {
+  margin-bottom: 2px;
+}
+
+#turnipTable th div:nth-of-type(2) {
+  display: flex;
+  justify-content: space-around;
+  opacity: 0.4;
+}
+
+#turnipTable td {
+  white-space: nowrap;
+  max-width: 150px;
+  padding: 6px 4px;
+  text-align: center;
+  border-right: 1px solid var(--shadow-3);
+  border-bottom: 1px solid var(--shadow-15);
+}
+
+#turnipTable tbody tr {
+  opacity: 0.8;
+}
+
+#turnipTable tbody tr:hover {
+  cursor: default;
+  opacity: 1;
+}
+
+#turnipTable .table-pattern {
+  white-space: nowrap;
+}
+
+#turnipTable td.range4 {
+  background-color: var(--table-range4);
+}
+
+#turnipTable td.range3{
+  background-color: var(--table-range3);
+}
+
+#turnipTable td.range2 {
+  background-color: var(--table-range2);
+}
+
+#turnipTable td.range1 {
+  background-color: var(--table-range1);
+}
+
+#turnipTable td.range0 {
+  background-color: var(--table-range0);
+}
+
+.chart-wrapper {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  width: 100%;
+  max-width: 1080px;
+  justify-content: center;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 5vh;
+  margin-bottom: -7px;
+  /*Fix for safari gap*/
+  max-height: 150px;
+}
+
+#permalink-input {
+  display: none;
+  position: fixed;
+}
+
+.permalink {
+  display: none;
+  white-space: nowrap;
+  font-size: 18px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.permalink .fa-copy {
+  margin: 0 8px;
+  height: 20px;
+  color: var(--color-blue);
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  background-color: var(--dialog-bg-color); /* Black background color */
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--dialog-text-color);
+  letter-spacing: 0.2px;
+  line-height: 1.8rem;
+  text-align: center; /* Centered text */
+  border-radius: 40px; /* Rounded borders */
+  padding: 16px 24px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  bottom: 30px; /* 30px from the bottom */
+  box-shadow: 0 1px 3px var(--shadow-6), 0 1px 2px var(--shadow-8);
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+/* Cloud SVG placement */
+.parallax>use:nth-child(1) {
+  transform: translate3d(-30px, 0, 0);
+  fill: var(--wave-4);
+}
+
+.parallax>use:nth-child(2) {
+  transform: translate3d(-90px, 0, 0);
+  fill: var(--wave-3);
+}
+
+.parallax>use:nth-child(3) {
+  transform: translate3d(45px, 0, 0);
+  fill: var(--wave-2);
+}
+
+.parallax>use:nth-child(4) {
+  transform: translate3d(20px, 0, 0);
+  fill: var(--wave-1);
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+}
