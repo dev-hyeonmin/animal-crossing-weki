@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PATTERN, Predictor } from "../js/turnip/predictions";
+import { calcChartAreaData, chartOptions, getChartData } from "../js/turnip/chart";
 import '../styles/turnips.css';
+import Chart from 'react-apexcharts';
 
+  
 const patterns = [
     {
         id: "pattern-radio-unknown",
@@ -31,20 +34,20 @@ const patterns = [
 ];
 
 export const Turnip = () => {
-        
     const [weeks] = useState(["월", "화", "수", "목", "금", "토"]);
     const [isFirstBuy, setIsFirstBuy] = useState(false);
     const [pattern, setPattern] = useState(-1);
     const [buyPrice, setBuyPrice] = useState(100);
     const [sellPrice, setSellPrice] = useState([85, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    const [predictions, setPredictions]:any[] = useState();
+    const [predictors, setPredictors]: any = useState();
+    const [series, setSeries]:any = useState(getChartData());
 
     const setPatternValue:any = (value: number) => {
         setPattern((curr) => value);
         loadGraphData();
     };
 
-    const setBuyValue = (event: any) => {
+    const setBuyValue = async (event: any) => {
         setBuyPrice((curr) => Number(event.target.value));
         loadGraphData();
     };
@@ -56,8 +59,6 @@ export const Turnip = () => {
                 ...curr.slice(index+1, curr.length)
             ]
         );
-
-        loadGraphData();
     };
 
     const loadGraphData = () => {
@@ -76,8 +77,14 @@ export const Turnip = () => {
         })
         
         let predictor = new Predictor(data, false, -1);
-        setPredictions(predictor.analyze_possibilities());
+        setSeries(calcChartAreaData(predictor.analyze_possibilities()));
     };
+    
+    useEffect(() => {
+        loadGraphData();
+        
+    }, [])    
+
     return (
         <>
             <div className="nook-phone">
@@ -164,6 +171,7 @@ export const Turnip = () => {
                                             placeholder="..."
                                             value={sellPrice[index * 2] ? sellPrice[index * 2] : ' '}
                                             onChange={(event) => setSellValue(event, index * 2)}
+                                            onBlur={loadGraphData}
                                         />
                                     </div>
                                     <div className="input__group">
@@ -174,6 +182,7 @@ export const Turnip = () => {
                                             placeholder="..."
                                             value={sellPrice[index * 2 + 1] ? sellPrice[index * 2 + 1] : ' '}
                                             onChange={(event) => setSellValue(event, index * 2 + 1)}
+                                            onBlur={loadGraphData}
                                         />
                                     </div>
                                 </div>
@@ -184,11 +193,13 @@ export const Turnip = () => {
                         <button type="button" id="reset" className="button button--reset" name="action">초기화</button>
                     </form>
 
-
-
                     <h2>결과</h2>
                     <div className="chart-wrapper">
-                        <canvas id="chart" width="100%" height="100"></canvas>
+                        <Chart
+                            options={chartOptions}
+                            series={series}
+                            width="500px"
+                        />
                     </div>
                 </div>
             </div>

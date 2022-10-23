@@ -410,7 +410,7 @@ export class Predictor {
         const real_rate_range =
             this.rate_range_from_given_and_base(clamp(given_prices[i], min_pred, max_pred), buy_price);
         prob *= rate_pdf.range_limit(real_rate_range);
-        if (prob == 0) {
+        if (prob === 0) {
           return 0;
         }
         min_pred = given_prices[i];
@@ -464,7 +464,7 @@ export class Predictor {
           this.rate_range_from_given_and_base(clamp(middle_price, min_pred, max_pred), buy_price);
       prob *= range_intersect_length(rate_range, real_rate_range) /
         range_length(rate_range);
-      if (prob == 0) {
+      if (prob === 0) {
         return 0;
       }
 
@@ -512,7 +512,7 @@ export class Predictor {
       const Z2 = B - C;
       const PY = (t) => (F(t - C, Z2) - F(t - C, Z1)) / (Z2 - Z1);
       prob *= PY(rate2_range[1]) - PY(rate2_range[0]);
-      if (prob == 0) {
+      if (prob === 0) {
         return 0;
       }
     }
@@ -615,7 +615,7 @@ export class Predictor {
     // High Phase 1
     probability *= this.generate_individual_random_price(
         given_prices, predicted_prices, 2, high_phase_1_len, 0.9, 1.4);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
@@ -623,14 +623,14 @@ export class Predictor {
     probability *= this.generate_decreasing_random_price(
         given_prices, predicted_prices, 2 + high_phase_1_len, dec_phase_1_len,
         0.6, 0.8, 0.04, 0.1);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
     // High Phase 2
     probability *= this.generate_individual_random_price(given_prices, predicted_prices,
         2 + high_phase_1_len + dec_phase_1_len, high_phase_2_len, 0.9, 1.4);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
@@ -639,12 +639,12 @@ export class Predictor {
         given_prices, predicted_prices,
         2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len,
         dec_phase_2_len, 0.6, 0.8, 0.04, 0.1);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
     // High Phase 3
-    if (2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len + high_phase_3_len != 14) {
+    if (2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len + high_phase_3_len !== 14) {
       throw new Error("Phase lengths don't add up");
     }
 
@@ -652,7 +652,7 @@ export class Predictor {
         high_phase_2_len + dec_phase_2_len;
     probability *= this.generate_individual_random_price(
         given_prices, predicted_prices, prev_length, 14 - prev_length, 0.9, 1.4);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
@@ -719,7 +719,7 @@ export class Predictor {
 
     probability *= this.generate_decreasing_random_price(
         given_prices, predicted_prices, 2, peak_start - 2, 0.85, 0.9, 0.03, 0.05);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
@@ -730,7 +730,7 @@ export class Predictor {
       probability *= this.generate_individual_random_price(
           given_prices, predicted_prices, i, 1, min_randoms[i - peak_start],
           max_randoms[i - peak_start]);
-      if (probability == 0) {
+      if (probability === 0) {
         return;
       }
     }
@@ -776,7 +776,7 @@ export class Predictor {
 
     probability *= this.generate_decreasing_random_price(
         given_prices, predicted_prices, 2, 14 - 2, 0.85, 0.9, 0.03, 0.05);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
@@ -834,20 +834,20 @@ export class Predictor {
 
     probability *= this.generate_decreasing_random_price(
         given_prices, predicted_prices, 2, peak_start - 2, 0.4, 0.9, 0.03, 0.05);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
     // The peak
     probability *= this.generate_individual_random_price(
         given_prices, predicted_prices, peak_start, 2, 0.9, 1.4);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
     probability *= this.generate_peak_price(
         given_prices, predicted_prices, peak_start + 2, 1.4, 2.0);
-    if (probability == 0) {
+    if (probability === 0) {
       return;
     }
 
@@ -855,7 +855,7 @@ export class Predictor {
       probability *= this.generate_decreasing_random_price(
           given_prices, predicted_prices, peak_start + 5, 14 - (peak_start + 5),
           0.4, 0.9, 0.03, 0.05);
-      if (probability == 0) {
+      if (probability === 0) {
         return;
       }
     }
@@ -923,7 +923,7 @@ export class Predictor {
       this.fudge_factor = i;
       generated_possibilities = Array.from(this.generate_possibilities(sell_prices, first_buy, previous_pattern));
       if (generated_possibilities.length > 0) {
-        console.log("Generated possibilities using fudge factor %d: ", i, generated_possibilities);
+        //console.log("Generated possibilities using fudge factor %d: ", i, generated_possibilities);
         break;
       }
     }
@@ -958,7 +958,7 @@ export class Predictor {
     let category_totals = {};
     for (let i of [0, 1, 2, 3]) {
       category_totals[i] = generated_possibilities
-        .filter(value => value.pattern_number == i)
+        .filter(value => value.pattern_number === i)
         .map(value => value.probability)
         .reduce((previous, current) => previous + current, 0);
     }
