@@ -34,12 +34,10 @@ const patterns = [
 ];
 
 export const Turnip = () => {
-    const [weeks] = useState(["월", "화", "수", "목", "금", "토"]);
-    const [isFirstBuy, setIsFirstBuy] = useState(false);
+    const [weeks] = useState(["월", "화", "수", "목", "금", "토"]); 
     const [pattern, setPattern] = useState(-1);
     const [buyPrice, setBuyPrice] = useState(100);
     const [sellPrice, setSellPrice] = useState([85, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    const [predictors, setPredictors]: any = useState();
     const [series, setSeries]:any = useState(getChartData());
 
     const setPatternValue:any = (value: number) => {
@@ -82,72 +80,35 @@ export const Turnip = () => {
     
     useEffect(() => {
         loadGraphData();
-        
-    }, [])    
+    }, [sellPrice])    
 
     return (
         <>
-            <div className="nook-phone">
-                <h1></h1>
-
-                <div className="nook-phone-center">
-                    <form className="input__form">
-                        <div className="form__row">
-                            <h6>첫 구매</h6>
-                            <div className="input__group">
-                                <label>당신의 섬에 방문한 무파니에게서 처음으로 무를 샀습니까?</label>
-                                    <div className="input__radio-buttons">
+            <div className="wrapper-turnip">
+                <form>                        
+                    <dl>
+                        <dt>Previous pattern</dt>
+                        <dd>
+                            {patterns.map((p, index) => 
+                                <span key={`pattern+${index}`}>
                                     <input
                                         type="radio"
-                                        id="first-time-radio-no"
-                                        name="first-time"
-                                        value="false"
-                                        checked={isFirstBuy === false}
-                                        onChange={() => setIsFirstBuy(false)}
+                                        id={p.id}
+                                        name="pattern"
+                                        value="-1"
+                                        checked={pattern === p.value}
+                                        onChange={() => setPatternValue(p.value)}
                                     />
-                                    <label htmlFor="first-time-radio-no">아니요</label>
-                                    <input
-                                        type="radio"
-                                        id="first-time-radio-yes"
-                                        name="first-time"
-                                        value="true"
-                                        checked={isFirstBuy === true}
-                                        onChange={() => setIsFirstBuy(true)}
-                                    />
-                                    <label htmlFor="first-time-radio-yes">예</label>
-                                </div>
-                            </div>
-                        </div>
+                                    <label htmlFor={p.id}>{p.label}</label>
+                                </span>
+                            )}
+                        </dd>
+                    </dl>
 
-                        <div className="form__row">
-                            <h6>이전 패턴</h6>
-                            <div className="input__group">
-                                <label htmlFor="">
-                                    저번 주의 무 가격 패턴이 어떻게 됩니까?
-                                    <i>(패턴에 영향을 끼칩니다)</i>
-                                </label>
-                                <div className="input__radio-buttons">
-                                    {patterns.map((p, index) => 
-                                        <span key={`pattern+${index}`}>
-                                            <input
-                                                type="radio"
-                                                id={p.id}
-                                                name="pattern"
-                                                value="-1"
-                                                checked={pattern === p.value}
-                                                onChange={() => setPatternValue(p.value)}
-                                            />
-                                            <label htmlFor={p.id}>{p.label}</label>
-                                        </span>
-                                    )}                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="form__row">
-                            <h6>일요일</h6>
-                            <div className="input__group">
-                                <label htmlFor='buy'>이번 주에 당신의 섬에서 무를 샀을 때의 가격이 어떻게 됩니까?</label>
+                    <div className="wrapper-price">
+                        <dl className="price">
+                            <dt>구매가격</dt>
+                            <dd>
                                 <input
                                     type="number"
                                     pattern="\d*"
@@ -156,51 +117,48 @@ export const Turnip = () => {
                                     value={buyPrice ? buyPrice : ""}
                                     onChange={(event) => setBuyValue(event)}
                                 />
-                            </div>
-                        </div>
+                            </dd>
+                        </dl>
 
-                        <div className="form__flex-wrap">
-                            {weeks.map((week, index) => 
-                                <div className="form__row" key={`${week}_${index}`}>
-                                    <h6>{week}요일</h6>
-                                    <div className="input__group">
-                                        <label htmlFor={`sell_${(index + 1) * 2}`}>오전</label>
-                                        <input
-                                            type="number"
-                                            pattern="\d*"
-                                            placeholder="..."
-                                            value={sellPrice[index * 2] ? sellPrice[index * 2] : ' '}
-                                            onChange={(event) => setSellValue(event, index * 2)}
-                                            onBlur={loadGraphData}
-                                        />
-                                    </div>
-                                    <div className="input__group">
-                                        <label htmlFor={`sell_${(index + 1) * 2 + 1}`}>오후</label>
-                                        <input
-                                            type="number"
-                                            pattern="\d*"
-                                            placeholder="..."
-                                            value={sellPrice[index * 2 + 1] ? sellPrice[index * 2 + 1] : ' '}
-                                            onChange={(event) => setSellValue(event, index * 2 + 1)}
-                                            onBlur={loadGraphData}
-                                        />
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        <input id="permalink-input" type="text" readOnly />
-                        <button type="button" id="reset" className="button button--reset" name="action">초기화</button>
-                    </form>
-
-                    <h2>결과</h2>
-                    <div className="chart-wrapper">
-                        <Chart
-                            options={chartOptions}
-                            series={series}
-                            width="500px"
-                        />
+                        {weeks.map((week, index) => 
+                            <dl key={`${week}_${index}`} className="price">
+                                <dt>{week}요일</dt>
+                                <dd>
+                                    <input
+                                        type="number"
+                                        pattern="\d*"
+                                        placeholder="..."
+                                        value={sellPrice[index * 2] ? sellPrice[index * 2] : ' '}
+                                        onChange={(event) => setSellValue(event, index * 2)}
+                                        onBlur={loadGraphData}
+                                    />
+                                </dd>
+                                <dd>
+                                    <input
+                                        type="number"
+                                        pattern="\d*"
+                                        placeholder="..."
+                                        value={sellPrice[index * 2 + 1] ? sellPrice[index * 2 + 1] : ' '}
+                                        onChange={(event) => setSellValue(event, index * 2 + 1)}
+                                        onBlur={loadGraphData}
+                                    />
+                                </dd>
+                            </dl>
+                        )}
                     </div>
+
+                    <div className="box-btn">
+                        <button type="button" id="reset" className="reset" name="action">초기화</button>
+                        <button type="button">계산하기</button>
+                    </div>
+                </form>
+
+                <div className="chart-wrapper">
+                    <Chart
+                        options={chartOptions}
+                        series={series}
+                        width="100%"
+                    />
                 </div>
             </div>
         </>

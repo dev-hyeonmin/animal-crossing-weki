@@ -7,7 +7,7 @@ const defaultMaxArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 export const chartOptions: ApexOptions = {
     chart: {
         width:"100%",
-        height: 400,
+        height: 500,
         type: 'line',
         toolbar: {
             show: false
@@ -22,7 +22,7 @@ export const chartOptions: ApexOptions = {
     legend: {
         show: false
     },
-    colors: ["#248f81", "#4b4829"]
+    colors: ["#ff4040", "#0AB5CD"]
 };
 
 
