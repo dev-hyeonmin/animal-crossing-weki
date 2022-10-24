@@ -44,7 +44,7 @@ export const calcChartAreaData = (data?: any[]) => {
     if (!data) {
         return getChartData();
     }
-
+    console.log(data);
     let minArr = [999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999];
     let maxArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 

@@ -1,5 +1,8 @@
 import VILLAGERS from './lang/villagers.json';
 
+export const CHART_DATA_KEY = 'chart';
+export const CHART_PATTERN_KEY = 'chart_pattern';
+
 const SPECIES = [
     { eng: "alligator", kor: "악어" },
     { eng: "anteater", kor: "개미핥기" },
