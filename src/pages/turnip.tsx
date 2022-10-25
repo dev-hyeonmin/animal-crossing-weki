@@ -1,38 +1,11 @@
 import { useEffect, useState } from "react";
 import { PATTERN, Predictor } from "../js/turnip/predictions";
-import { calcChartAreaData, chartOptions, getChartData } from "../js/turnip/chart";
+import { calcChartAreaData, chartOptions, getChartData, getPatternPercent, patterns } from "../js/turnip/chart";
 import '../styles/turnips.css';
 import Chart from 'react-apexcharts';
 import { CHART_DATA_KEY, CHART_PATTERN_KEY } from "../constants/common";
 
-  
-const patterns = [
-    {
-        id: "pattern-radio-unknown",
-        label: "모름",
-        value: -1,
-    },
-    {
-        id: "pattern-radio-fluctuating",
-        label: "파동",
-        value: PATTERN.FLUCTUATING,
-    },
-    {
-        id: "pattern-radio-small-spike",
-        label: "미등",
-        value: PATTERN.SMALL_SPIKE,
-    },
-    {
-        id: "pattern-radio-large-spike",
-        label: "급등",
-        value: PATTERN.LARGE_SPIKE,
-    },
-    {
-        id: "attern-radio-decreasing",
-        label: "하락",
-        value: PATTERN.DECREASING,
-    }
-];
+
 
 export const Turnip = () => {
     const [weeks] = useState(["월", "화", "수", "목", "금", "토"]); 
@@ -40,6 +13,7 @@ export const Turnip = () => {
     const [buyPrice, setBuyPrice] = useState(0);
     const [sellPrice, setSellPrice] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     const [series, setSeries]:any = useState(getChartData());
+    const [chartPattern, setChartPattern]:any = useState([]);
 
     const setChartDataLocal = () => {
         let newArr = [
@@ -83,8 +57,10 @@ export const Turnip = () => {
     const loadGraphData = () => {
         const data = setChartDataLocal();
         
-        let predictor = new Predictor(data, false, -1);  
-        setSeries(calcChartAreaData(predictor.analyze_possibilities()));
+        let predictor = new Predictor(data, false, -1);
+        let analyzePredictor = predictor.analyze_possibilities();
+        setSeries(calcChartAreaData(analyzePredictor));
+        setChartPattern(getPatternPercent(analyzePredictor));
     };
 
     const calc = () => {
@@ -191,6 +167,19 @@ export const Turnip = () => {
                         series={series}
                         width="100%"
                     />
+                </div>
+
+                <div className="pattern-wrapper">
+                    {chartPattern.map((pattern :any) => 
+                        <dl key={pattern.pattern_number}>
+                            <dt>
+                                {pattern.name}
+                            </dt>
+                            <dd>
+                                {pattern.probability}%
+                            </dd>
+                        </dl>
+                    )}
                 </div>
             </div>
         </>

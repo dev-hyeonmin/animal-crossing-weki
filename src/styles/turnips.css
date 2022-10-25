@@ -212,6 +212,15 @@
   background-color: #ed2424;
 }
 
+.pattern-wrapper {
+  display: flex;
+}
+
+.pattern-wrapper dl {
+  width: 33.33%;
+  text-align: center;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

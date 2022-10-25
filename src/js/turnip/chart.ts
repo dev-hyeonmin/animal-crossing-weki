@@ -1,9 +1,37 @@
 import { ApexOptions } from "apexcharts";
+import { PATTERN } from "./predictions";
 
 const labels = ['월오전', '월오후', '화오전', '화오후', '수오전', '수오후', '목오전', '목오후', '금오전', '금오후', '토오전', '토오후'];
 const defaultMinArr = [999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999];
 const defaultMaxArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    
+export const patterns = [
+    {
+        id: "pattern-radio-unknown",
+        label: "모름",
+        value: -1,
+    },
+    {
+        id: "pattern-radio-fluctuating",
+        label: "파동",
+        value: PATTERN.FLUCTUATING,
+    },
+    {
+        id: "pattern-radio-small-spike",
+        label: "미등",
+        value: PATTERN.SMALL_SPIKE,
+    },
+    {
+        id: "pattern-radio-large-spike",
+        label: "급등",
+        value: PATTERN.LARGE_SPIKE,
+    },
+    {
+        id: "attern-radio-decreasing",
+        label: "하락",
+        value: PATTERN.DECREASING,
+    }
+];
+
 export const chartOptions: ApexOptions = {
     chart: {
         width:"100%",
@@ -71,3 +99,23 @@ export const calcChartAreaData = (data?: any[]) => {
 
     return getChartData(minArr, maxArr);
 }
+
+export const getPatternPercent = (data: any) => {
+    let patternArr: any = [];
+
+    data.map((item: any) => {
+        const findedPattern = patternArr.filter((p: any) => p.pattern_number === item.pattern_number);
+
+        if (findedPattern.length === 0 && item.category_total_probability) {
+            const selectPattern: any = patterns.filter((p) => p.value == item.pattern_number);
+
+            patternArr.push({
+                pattern_number: item.pattern_number,
+                probability: Math.round(item.category_total_probability * 100),
+                name: selectPattern[0] ? selectPattern[0].label : ''
+            });
+        }
+    });
+    
+    return patternArr;
+} 
