@@ -8,12 +8,12 @@ import { CHART_DATA_KEY, CHART_PATTERN_KEY } from "../constants/common";
 
 
 export const Turnip = () => {
-    const [weeks] = useState(["월", "화", "수", "목", "금", "토"]); 
+    const [weeks] = useState(["월", "화", "수", "목", "금", "토"]);
     const [pattern, setPattern] = useState(-1);
     const [buyPrice, setBuyPrice] = useState(0);
     const [sellPrice, setSellPrice] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    const [series, setSeries]:any = useState(getChartData());
-    const [chartPattern, setChartPattern]:any = useState([]);
+    const [series, setSeries]: any = useState(getChartData());
+    const [chartPattern, setChartPattern]: any = useState([]);
 
     const setChartDataLocal = () => {
         let newArr = [
@@ -29,34 +29,34 @@ export const Turnip = () => {
                 data.push(item);
             }
         })
-        
+
         localStorage.setItem(CHART_DATA_KEY, data.toString());
         return data;
     }
 
-    const setPatternValue:any = (value: number) => {
+    const setPatternValue: any = (value: number) => {
         setPattern((curr) => value);
         localStorage.setItem(CHART_PATTERN_KEY, value.toString());
         //loadGraphData();
     };
 
     const setBuyValue = async (event: any) => {
-        setBuyPrice((curr) => Number(event.target.value));        
+        setBuyPrice((curr) => Number(event.target.value));
         //loadGraphData();
     };
 
     const setSellValue = (event: any, index: number) => {
-        setSellPrice((curr) =>[
-                ...curr.slice(0, index),
-                Number(event.target.value),
-                ...curr.slice(index+1, curr.length)
-            ]
+        setSellPrice((curr) => [
+            ...curr.slice(0, index),
+            Number(event.target.value),
+            ...curr.slice(index + 1, curr.length)
+        ]
         );
     };
 
     const loadGraphData = () => {
         const data = setChartDataLocal();
-        
+
         let predictor = new Predictor(data, false, -1);
         let analyzePredictor = predictor.analyze_possibilities();
         setSeries(calcChartAreaData(analyzePredictor));
@@ -75,7 +75,7 @@ export const Turnip = () => {
         setBuyPrice(0);
         setSellPrice([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     }
-  
+
     useEffect(() => {
         const chartData = localStorage.getItem(CHART_DATA_KEY);
         const chartPattern = localStorage.getItem(CHART_PATTERN_KEY);
@@ -95,11 +95,11 @@ export const Turnip = () => {
     return (
         <>
             <div className="wrapper-turnip">
-                <form>                        
+                <form>
                     <dl>
                         <dt>Previous pattern</dt>
                         <dd>
-                            {patterns.map((p, index) => 
+                            {patterns.map((p, index) =>
                                 <span key={`pattern+${index}`}>
                                     <input
                                         type="radio"
@@ -130,7 +130,7 @@ export const Turnip = () => {
                             </dd>
                         </dl>
 
-                        {weeks.map((week, index) => 
+                        {weeks.map((week, index) =>
                             <dl key={`${week}_${index}`} className="price">
                                 <dt>{week}요일</dt>
                                 <dd>
@@ -170,13 +170,13 @@ export const Turnip = () => {
                 </div>
 
                 <div className="pattern-wrapper">
-                    {chartPattern.map((pattern :any) => 
+                    {chartPattern.map((pattern: any) =>
                         <dl key={pattern.pattern_number}>
                             <dt>
                                 {pattern.name}
                             </dt>
                             <dd>
-                                {pattern.probability}%
+                                {pattern.probability}   %
                             </dd>
                         </dl>
                     )}

@@ -7,7 +7,7 @@
 .react-calendar__viewContainer {margin-top: 10px;}
 .react-calendar__month-view__weekdays .react-calendar__month-view__weekdays__weekday {width: 14.28%; text-align: center; margin-bottom: 10px;}
 .react-calendar__month-view__weekdays abbr {color: #bbb; font-size: 12px;}
-.react-calendar__month-view__days .react-calendar__tile {width: 14.28%; line-height: 45px; background-color: transparent; font-size: 14px; color: #4b4829; border-radius: 25px;}
+.react-calendar__month-view__days .react-calendar__tile {width: 45px; line-height: 45px; background-color: transparent; font-size: 14px; color: #4b4829; border-radius: 50%;}
 .react-calendar__month-view__days .react-calendar__tile abbr {text-align: center;}
 .react-calendar__month-view__days .react-calendar__tile--active {background-color: #248f81 !important;}
 .react-calendar__month-view__days .react-calendar__tile--active abbr {color: #fff;}
