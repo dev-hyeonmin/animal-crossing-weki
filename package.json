@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.7.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -11,7 +12,9 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "apexcharts": "^3.36.0",
+    "apollo": "^2.34.0",
     "framer-motion": "^7.5.2",
+    "graphql": "^15.8.0",
     "jquery": "^3.6.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -23,6 +26,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "apollo:codegen": "rimraf src/__generated__ && apollo client:codegen src/__generated__ --target=typescript --outputFlat",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,5 +53,22 @@
   "devDependencies": {
     "@types/jquery": "^3.5.14",
     "@types/react-calendar": "^3.5.3"
+  },
+  "overrides": {
+    "@apollo/client": {
+      "react": "$react"
+    },
+    "@apollographql/graphql-language-service-interface": {
+      "graphql": "$graphql"
+    },
+    "@apollographql/graphql-language-service-parser": {
+      "graphql": "$graphql"
+    },
+    "@apollographql/graphql-language-service-types": {
+      "graphql": "$graphql"
+    },
+    "@apollographql/graphql-language-service-utils": {
+      "graphql": "$graphql"
+    }
   }
 }
