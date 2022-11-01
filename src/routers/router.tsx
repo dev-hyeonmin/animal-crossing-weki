@@ -50,8 +50,9 @@ export const AppRouter = () => {
                 <div className='content'>                                    
                     <Routes>
                         {routes.map((route => 
-                            <Route key={`route${route.name}`} path={route.path} element={route.element} />                            
+                            <Route key={`route${route.name}`} path={route.path} element={route.element} />
                         ))}
+                        <Route key='villager' path='/villagers/:id' element={<Villagers />} />
                     </Routes>
 
                     <Footer />            

@@ -5,9 +5,12 @@ import {
     makeVar,
     split,
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { getMainDefinition } from "@apollo/client/utilities";
 import { LOCALSTORAGE_TOKEN, SERVER_URL, SOCKET_URL } from "./constans";
+import { setContext } from "@apollo/client/link/context";
+
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 const token = localStorage.getItem(LOCALSTORAGE_TOKEN);
 export const isLoggedInVar = makeVar(Boolean(token));
@@ -16,9 +19,21 @@ export const authTokenVar = makeVar(token);
 const httpLink = createHttpLink({
     uri:
         process.env.NODE_ENV === 'production' 
-        ? `${SERVER_URL}/graphql`
+        ? "https://mmm-backend.herokuapp.com/graphql"
         : `${SERVER_URL}/graphql`,
 });
+
+const wsLink = new GraphQLWsLink(
+    createClient({
+    url:
+        process.env.NODE_ENV === 'production' 
+        ? "wss://mmm-backend.herokuapp.com/graphql"
+        : `${SOCKET_URL}/graphql`,
+    connectionParams: {
+        "x-jwt": authTokenVar() || "",
+    },
+    })
+);
 
 const authLink = setContext((_, { headers }) => {
     return {
@@ -37,6 +52,7 @@ const splitLink = split(
             definition.operation === "subscription"
         );
     },
+    wsLink,
     authLink.concat(httpLink)
 );
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -22,7 +22,7 @@ time, mark, audio, video {
 	border: 0;
 	vertical-align: baseline;
 	box-sizing: border-box;
-	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Spoqa Han Sans Neo', 'sans-serif';
 	color: #333;
 }
 /* HTML5 display-role reset for older browsers */

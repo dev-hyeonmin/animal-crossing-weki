@@ -1,98 +1,100 @@
+import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Loading } from "../components/loading";
-import { getPersonality, getSpecies, getVillager, SPECIES } from "../constants/common";
-import { IVillager } from "../constants/interface";
+import { VILLAGERS_QUERY } from "../mutations";
+import { VillagersQuery, VillagersQuery_villagers, VillagersQuery_villagers_villagers } from "../__generated__/VillagersQuery";
 // @ts-ignore
-import quote from '../images/quote.png';
+import closeImg from '../images/close-menu.png';
 
 export const Villagers = () => {
-    const pageCount = 20;
     const navigation = useNavigate();
     const location = useLocation();
     const [, species] = location.search.split("?specie=");
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(true);
-    const [villagers, setVillagers] = useState<IVillager[]>([]);
-    const [searchSpecie, setSearchSpecie] = useState('');
-
-    useEffect(() => {
-        if (!process.env.REACT_APP_NOOKIPEIA_KEY) { return; }        
-
-        const selectedSpecies = species ? species : '';
-        setSearchSpecie(() => selectedSpecies);
-
-        fetch(`${process.env.REACT_APP_NOOKIPEIA_URL}/villagers?game=NH&species=${selectedSpecies}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'X-API-KEY': process.env.REACT_APP_NOOKIPEIA_KEY,
-                'Accept-Version': '1.0.0'
-            }
-        }).then(response => response.json())
-            .then(data => {
-                setVillagers(data);
-                setLoading(false);
-            });
-    }, [species]);
-
-    const nextPage = () => {
-        setPage((currentPage) => currentPage + 1);
-    };
-
-    const searchSpecies = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setLoading(true);
-        navigation({
-            pathname: '/',
-            search: `?specie=${e.target.value}`        
-        })
-    };
+    const { id: villagerId } = useParams();
+    const [selectedVillager, setSelectedVillager] = useState<VillagersQuery_villagers_villagers | undefined>();
+    const { data: villagersData, loading } = useQuery<VillagersQuery, VillagersQuery_villagers>(VILLAGERS_QUERY);
+    
+    useEffect(() => {     
+        setSelectedVillager(() =>  villagersData?.villagers.villagers?.find((villager) => villager.id + "" === villagerId));
+    }, [villagerId]);
 
     return (
         <>
             <div className="wrapper-search">
-                <select onChange={(e) => searchSpecies(e)} value={searchSpecie}>
-                <option value="">전체</option>
-                    {SPECIES.map((specie, index) => 
-                        <option key={`specie${index}`} value={specie.eng} selected={specie.eng === searchSpecie}>
-                            {specie.kor}
-                        </option>
-                    )}
+                <select>
+                    <option value="">종류</option>                
                 </select>
+
+                <select>
+                    <option value="">성격</option>                
+                </select>
+
+                <input type="text" placeholder="이름" />
             </div>
             <div className="wrapper-villagers">
                 {!loading &&
-                    villagers.slice(0, page * pageCount).map((villager, index) =>
-                        <a key={villager.id + index} className="villager" href={villager.url}>
-                            <div className="vi-image" style={{ backgroundImage: `url(${villager.image_url})` }}></div>
+                    villagersData?.villagers?.villagers?.map((villager) =>
+                        villager.species !== 'NPC' &&
+                            <div key={villager.name} className="villager" onClick={() => navigation(`/villagers/${villager.id}`)}>
+                                <div className="vi-image" style={{ backgroundImage: `url(${villager.image?.replaceAll(" ", "%20")})` }}></div>
 
-                            <dl className="vi-info">
-                                <dd>{getVillager(villager.id, villager.name)}</dd>
-                                <dd>
-                                    <img src={quote} alt="quote" />
-                                    {villager.quote}
-                                    <img src={quote} alt="quote" />
-                                </dd>
-                                <dd>
-                                    <span>#{getSpecies(villager.species)}</span>
-                                    <span>#{getPersonality(villager.personality)}</span>
-                                    <span>#{villager.gender}</span>
-                                    <span>#{villager.sign}</span>
-                                </dd>
-                                <dd>🎉 {villager.birthday_month} / {villager.birthday_day}</dd>
-                            </dl>
-                        </a>
+                                <dl className="vi-info">
+                                    <dt>{villager.name}</dt>
+                                    <dd>{villager.favoriteTalk}</dd>
+                                    <dd>{villager.species} / {villager.personality}</dd>
+                                </dl>
+                            </div>
                     )
                 }
 
                 {loading &&
                     <Loading />
                 }
-
             </div>
 
-            <div className="box-button">
-                <button className="btn-page" onClick={nextPage}>more</button>
-            </div>
+            {villagerId && 
+                <div className="wrapper-villager-detail">
+                    <div className="villager-detail-inner">
+                        <button onClick={() => navigation("/")}>
+                            <img src={closeImg} />
+                        </button>
+
+                        <div className="villager-image">
+                            <img src={selectedVillager?.image ? selectedVillager?.image : ""} />
+                            <span>{selectedVillager?.name} <i>{selectedVillager?.species}</i></span>
+                        </div>
+
+                        <p>{selectedVillager?.favoriteTalk}</p>
+
+                        <dl>
+                            <dt>생일</dt>
+                            <dd>{selectedVillager?.birth}</dd>
+
+                            <dt>성격</dt>
+                            <dd>{selectedVillager?.personality}</dd>
+
+                            <dt>성별</dt>
+                            <dd>{selectedVillager?.gender}</dd>
+
+                            <dt>취미</dt>
+                            <dd>{selectedVillager?.hobby}</dd>
+
+                            <dt>말버릇</dt>
+                            <dd>{selectedVillager?.speak}</dd>
+
+                            <dt>대화타입</dt>
+                            <dd>{selectedVillager?.speakType}</dd>
+
+                            <dt>스타일</dt>
+                            <dd>{selectedVillager?.style} / {selectedVillager?.style2}</dd>
+
+                            <dt>색상</dt>
+                            <dd>{selectedVillager?.color} / {selectedVillager?.color2}</dd>
+                        </dl>
+                    </div>
+                </div>
+            }
         </>
     );
 }
