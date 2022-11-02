@@ -7,37 +7,41 @@ import { Seas } from '../pages/seas';
 import { Villagers } from '../pages/villagers';
 import { Events } from '../pages/events';
 import { Turnip } from '../pages/turnip';
+import { Login } from '../pages/user/login';
+import { CreateAccount } from '../pages/user/create-account';
 
-export const routes = [
+const routes = [
     {
         path: "/",
-        element: <Villagers />,
-        name: "villagers"
+        element: <Villagers />
     },
     {
         path: "/fishes",
-        element: <Fishes />,
-        name: "fishes"
+        element: <Fishes />
     },
     {
         path: "/bugs",
-        element: <Bugs />,
-        name: "bugs"
+        element: <Bugs />
     },
     {
         path: "/seas",
-        element: <Seas />,
-        name: "seas"
+        element: <Seas />
     },
     {
         path: "/events",
-        element: <Events />,
-        name: "events"
+        element: <Events />
     },
     {
         path: "/turnip",
-        element: <Turnip />,
-        name: "turnip calculator"
+        element: <Turnip />
+    },
+    {
+        path: "/login",
+        element: <Login />
+    },
+    {
+        path: "/create-account",
+        element: <CreateAccount />,
     },
 ];
 
@@ -50,7 +54,7 @@ export const AppRouter = () => {
                 <div className='content'>                                    
                     <Routes>
                         {routes.map((route => 
-                            <Route key={`route${route.name}`} path={route.path} element={route.element} />
+                            <Route key={route.path} path={route.path} element={route.element} />
                         ))}
                         <Route key='villager' path='/villagers/:id' element={<Villagers />} />
                     </Routes>

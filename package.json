@@ -21,6 +21,8 @@
     "react-apexcharts": "^1.4.0",
     "react-calendar": "^3.9.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.39.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.8.4",
@@ -53,7 +55,8 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.14",
-    "@types/react-calendar": "^3.5.3"
+    "@types/react-calendar": "^3.5.3",
+    "@types/react-helmet": "^6.1.5"
   },
   "overrides": {
     "@apollo/client": {

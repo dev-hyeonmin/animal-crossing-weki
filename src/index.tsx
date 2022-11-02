@@ -1,10 +1,10 @@
 import { ApolloProvider } from '@apollo/client';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { client } from './apollo';
 import App from './App';
 import './styles/reset.css';
 import './styles/style.css';
+import './styles/user.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -4,10 +4,6 @@ import fishIcon from '../images/fishes.png';
 // @ts-ignore
 import fishActiveIcon from '../images/fishes-active.png';
 // @ts-ignore
-import seaIcon from '../images/sea.png';
-// @ts-ignore
-import seaActiveIcon from '../images/sea-active.png';
-// @ts-ignore
 import bugIcon from '../images/bug.png';
 // @ts-ignore
 import bugActiveIcon from '../images/bug-active.png';
@@ -15,37 +11,68 @@ import bugActiveIcon from '../images/bug-active.png';
 import villagerIcon from '../images/villager.png';
 // @ts-ignore
 import villagerActiveIcon from '../images/villager-active.png';
+// @ts-ignore
+import userIcon from '../images/user.png';
+// @ts-ignore
+import userActiveIcon from '../images/user-active.png';
+import { useReactiveVar } from '@apollo/client';
+import { isLoggedInVar } from '../apollo';
+
+const footerMenu = [
+    {
+        path: "/",
+        name: "villagers",
+        image: villagerIcon,
+        imageActive: villagerActiveIcon
+    },
+    {
+        path: "/fishes",
+        name: "fishes",
+        image: fishIcon,
+        imageActive: fishActiveIcon
+    },
+    {
+        path: "/bugs",
+        name: "bugs",
+        image: bugIcon,
+        imageActive: bugActiveIcon
+    },
+];
 
 export const Footer = () => {
     const location = useLocation();
     const path = location.pathname;
+    const isLoggedIn = useReactiveVar(isLoggedInVar);
 
     return (
         <nav>
-            <Link
-                to="/"
-                className={ path === '/' ? "footer-menu active" : "footer-menu" }
-                style={{ backgroundImage: path === '/' ? `url(${villagerActiveIcon})` : `url(${villagerIcon})` }}>
-                villager
-            </Link>
-            <Link
-                to="/fishes"
-                className={ path === '/fishes' ? "footer-menu active" : "footer-menu" }
-                style={{ backgroundImage: path === '/fishes' ? `url(${fishActiveIcon})` : `url(${fishIcon})` }}>
-                fish
-            </Link>
-            <Link
-                to="/bugs"
-                className={ path === '/bugs' ? "footer-menu active" : "footer-menu" }
-                style={{ backgroundImage: path === '/bugs' ? `url(${bugActiveIcon})` : `url(${bugIcon})` }}>
-                bug
-            </Link>
-            <Link
-                to="/seas"
-                className={ path === '/seas' ? "footer-menu active" : "footer-menu" }
-                style={{ backgroundImage: path === '/seas' ? `url(${seaActiveIcon})` : `url(${seaIcon})` }}>
-                sea
-            </Link>
+            <>
+                {footerMenu.map((menu) => 
+                    <Link
+                        key={menu.path}
+                        to="/"
+                        className={path === menu.path ? "footer-menu active" : "footer-menu"}
+                        style={{ backgroundImage: path === menu.path ? `url(${menu.imageActive})` : `url(${menu.image})` }}>
+                        {menu.name}
+                    </Link>
+                )}
+            
+                {isLoggedIn ?                     
+                    <Link
+                        to="/edit-profile"
+                        className={ path === '/edit-profile' ? "footer-menu active" : "footer-menu" }
+                        style={{ backgroundImage: path === '/edit-profile' ? `url(${userActiveIcon})` : `url(${userIcon})` }}>
+                        User
+                    </Link>
+                    : 
+                    <Link
+                        to="/login"
+                        className={ path === '/login' ? "footer-menu active" : "footer-menu" }
+                        style={{ backgroundImage: path === '/login' ? `url(${userActiveIcon})` : `url(${userIcon})` }}>
+                        User
+                    </Link> 
+                }                
+            </>
         </nav>
     );
 }

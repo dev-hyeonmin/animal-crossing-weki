@@ -51,4 +51,17 @@ table {
 button {
 	border: none;
 	cursor: pointer;
+	outline: none;
+	background-color: rgb(216, 234, 227);
+	color: rgb(56, 143, 133);
+	transition: all 0.2s ease;
+}
+button.active {
+	background-color: rgb(56, 143, 133);
+	color: rgb(253, 251, 246);
+}
+.form-error {
+	color: #df4545;
+	font-size: 12px;
+	padding: 3px 0 0 3px;
 }

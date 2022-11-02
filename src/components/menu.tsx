@@ -1,11 +1,47 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
-import { routes } from "../routers/router";
-
+import { Villagers } from "../pages/villagers";
+import { Fishes } from "../pages/fishes";
+import { Bugs } from "../pages/bugs";
+import { Seas } from "../pages/seas";
+import { Events } from "../pages/events";
+import { Turnip } from "../pages/turnip";
 // @ts-ignore
 import closeMenu from '../images/close-menu.png';
 
+const menuRoute = [
+    {
+        path: "/",
+        element: <Villagers />,
+        name: "villagers"
+    },
+    {
+        path: "/fishes",
+        element: <Fishes />,
+        name: "fishes"
+    },
+    {
+        path: "/bugs",
+        element: <Bugs />,
+        name: "bugs"
+    },
+    {
+        path: "/seas",
+        element: <Seas />,
+        name: "seas"
+    },
+    {
+        path: "/events",
+        element: <Events />,
+        name: "events"
+    },
+    {
+        path: "/turnip",
+        element: <Turnip />,
+        name: "turnip calculator"
+    },
+];
 
 const toggleVariant = {
     disable: { x: "-100%" },
@@ -36,7 +72,7 @@ export const Menu = () => {
                     <button onClick={() => setToggleMenu(false)}><img src={closeMenu} /></button>
                     
                     <dl>
-                        {routes.map((route) => 
+                        {menuRoute.map((route) => 
                             <dd key={`menu${route.name}`}>
                                 <Link
                                     to={route.path}
