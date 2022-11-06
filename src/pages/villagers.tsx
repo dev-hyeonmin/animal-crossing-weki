@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Loading } from "../components/loading";
 import { VILLAGERSFILTER_QUERY, VILLAGERS_QUERY } from "../mutations";
 import { VillagersQuery, VillagersQueryVariables, VillagersQuery_villagers_villagers } from "../__generated__/VillagersQuery";
@@ -11,7 +11,6 @@ import { VillagersFilterQuery, VillagersFilterQuery_villagersFilter } from "../_
 export const Villagers = () => {
     const navigation = useNavigate();
     const location = useLocation();
-    // const [, species] = location.search.split("?specie=");
     const { id: villagerId } = useParams();
     const [searchName, setSearchName] = useState("");
     const [searchSpecies, setSearchSpecies] = useState("");
@@ -57,7 +56,11 @@ export const Villagers = () => {
                 {!loading &&
                     villagersData?.villagers?.villagers?.map((villager) =>
                         villager.species !== 'NPC' &&
-                            <div key={villager.name} className="villager" onClick={() => navigation(`/villagers/${villager.id}`)}>
+                            <Link
+                                to={`/villagers/${villager.id}`}
+                                state={villager}
+                                key={villager.name}
+                                className="villager">
                                 <div className="vi-image" style={{ backgroundImage: `url(${villager.image?.replaceAll(" ", "%20")})` }}></div>
 
                                 <dl className="vi-info">
@@ -65,7 +68,7 @@ export const Villagers = () => {
                                     <dd>{villager.favoriteTalk}</dd>
                                     <dd>{villager.species} / {villager.personality}</dd>
                                 </dl>
-                            </div>
+                            </Link>
                     )
                 }
 
@@ -73,49 +76,6 @@ export const Villagers = () => {
                     <Loading />
                 }
             </div>
-
-            {villagerId && 
-                <div className="wrapper-villager-detail">
-                    <div className="villager-detail-inner">
-                        <button onClick={() => navigation("/")}>
-                            <img src={closeImg} />
-                        </button>
-
-                        <div className="villager-image">
-                            <img src={selectedVillager?.image ? selectedVillager?.image : ""} />
-                            <span>{selectedVillager?.name} <i>{selectedVillager?.species}</i></span>
-                        </div>
-
-                        <p>{selectedVillager?.favoriteTalk}</p>
-
-                        <dl>
-                            <dt>생일</dt>
-                            <dd>{selectedVillager?.birth}</dd>
-
-                            <dt>성격</dt>
-                            <dd>{selectedVillager?.personality}</dd>
-
-                            <dt>성별</dt>
-                            <dd>{selectedVillager?.gender}</dd>
-
-                            <dt>취미</dt>
-                            <dd>{selectedVillager?.hobby}</dd>
-
-                            <dt>말버릇</dt>
-                            <dd>{selectedVillager?.speak}</dd>
-
-                            <dt>대화타입</dt>
-                            <dd>{selectedVillager?.speakType}</dd>
-
-                            <dt>스타일</dt>
-                            <dd>{selectedVillager?.style} / {selectedVillager?.style2}</dd>
-
-                            <dt>색상</dt>
-                            <dd>{selectedVillager?.color} / {selectedVillager?.color2}</dd>
-                        </dl>
-                    </div>
-                </div>
-            }
         </>
     );
 }

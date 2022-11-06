@@ -30,8 +30,8 @@ nav .footer-menu.active {color: #248f81;}
 .box-button {display: flex; justify-content: center; margin-top: 20px;}
 .btn-page {width: 60px; height: 60px; line-height: 52px; border: 1px solid #248f81; border-radius: 50%; background-color: rgb(253, 251, 246); color: rgb(36, 143, 129);}
 
-.wrapper-villager-detail {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 99;}
-.wrapper-villager-detail .villager-detail-inner {position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgb(245, 244, 238); border: 1px solid rgb(211, 218, 208); border-radius: 10px 10px 0 0; overflow: hidden; text-align: center;}
+
+.wrapper-villager-detail .villager-detail-inner {width: 100%; background-color: rgb(245, 244, 238); border: 1px solid rgb(211, 218, 208); border-radius: 10px 10px 0 0; overflow: hidden; text-align: center;}
 .wrapper-villager-detail .villager-detail-inner button {position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; outline: none; background-color: transparent; z-index: 9;}
 .wrapper-villager-detail .villager-detail-inner button img {width: 100%; vertical-align: middle;}
 .wrapper-villager-detail .villager-image {position: relative; background-color: rgb(253, 251, 246); text-align: center; padding: 30px 0;}

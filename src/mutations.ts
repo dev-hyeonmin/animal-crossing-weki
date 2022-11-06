@@ -36,3 +36,35 @@ export const VILLAGERSFILTER_QUERY = gql`
         }
     }
 `;
+
+export const VILLAGERCOMMENTS_QUERY = gql`
+    query VillagerCommentsQuery ($villagerCommentsInput: VillagerCommentsInput!) {
+        villagersComments(input: $villagerCommentsInput) {
+            ok
+            comments {
+                content
+                user {
+                    name
+                }
+            }
+        }
+    }
+`;
+
+export const CREATEVILLAGERCOMMENT_MUTATION = gql`
+    mutation createVillagerCommentMutation ($createVillagerCommentInput: CreateVillagerCommentInput!) {
+        createVillagerComment (input: $createVillagerCommentInput) {
+            ok
+            error
+        }
+    }
+`;
+
+export const DELETEVILLAGERCOMMENT_MUTATION = gql`
+    mutation deleteVillagerCommentMutation ($deleteVillagerCommentInput: DeleteVillagerCommentInput!) {
+        deleteVillagerComment (input: $deleteVillagerCommentInput) {
+            ok
+            error
+        }
+    }
+`;

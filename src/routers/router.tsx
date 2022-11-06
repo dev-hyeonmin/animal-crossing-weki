@@ -9,11 +9,16 @@ import { Events } from '../pages/events';
 import { Turnip } from '../pages/turnip';
 import { Login } from '../pages/user/login';
 import { CreateAccount } from '../pages/user/create-account';
+import { Villager } from '../pages/villager';
 
 const routes = [
     {
         path: "/",
         element: <Villagers />
+    },
+    {
+        path: "/villagers/:id",
+        element: <Villager />
     },
     {
         path: "/fishes",

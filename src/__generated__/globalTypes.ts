@@ -13,6 +13,15 @@ export interface CreateAccountInput {
   password: string;
 }
 
+export interface CreateVillagerCommentInput {
+  content: string;
+  villagerId: number;
+}
+
+export interface DeleteVillagerCommentInput {
+  id: number;
+}
+
 export interface LoginInput {
   email: string;
   password: string;
@@ -20,6 +29,11 @@ export interface LoginInput {
 
 export interface VerifyEmailInput {
   code: string;
+}
+
+export interface VillagerCommentsInput {
+  villagerId: number;
+  page: number;
 }
 
 export interface VillagersInput {
