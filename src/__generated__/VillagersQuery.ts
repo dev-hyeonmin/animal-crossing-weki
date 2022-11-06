@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { VillagersInput } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: VillagersQuery
 // ====================================================
@@ -36,4 +38,8 @@ export interface VillagersQuery_villagers {
 
 export interface VillagersQuery {
   villagers: VillagersQuery_villagers;
+}
+
+export interface VillagersQueryVariables {
+  villagersInput: VillagersInput;
 }

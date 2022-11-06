@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/button";
 import { FormError } from "../../components/form-error";
-import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { authTokenVar, isLoggedInVar } from "../../apollo";
 import { LOCALSTORAGE_TOKEN } from "../../constans";

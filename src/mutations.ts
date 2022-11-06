@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const VILLAGERS_QUERY = gql`
-    query VillagersQuery {
-        villagers {
+    query VillagersQuery ($villagersInput: VillagersInput!) {
+        villagers(input: $villagersInput) {
             ok
             error
             villagers {
@@ -27,3 +27,12 @@ export const VILLAGERS_QUERY = gql`
     }
 `;
 
+export const VILLAGERSFILTER_QUERY = gql`
+    query VillagersFilterQuery {
+        villagersFilter {
+            ok
+            species
+            personalities
+        }
+    }
+`;

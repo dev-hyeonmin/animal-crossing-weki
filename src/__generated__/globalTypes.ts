@@ -18,6 +18,16 @@ export interface LoginInput {
   password: string;
 }
 
+export interface VerifyEmailInput {
+  code: string;
+}
+
+export interface VillagersInput {
+  species?: string | null;
+  name?: string | null;
+  personality?: string | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

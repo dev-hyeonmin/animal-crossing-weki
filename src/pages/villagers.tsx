@@ -2,35 +2,56 @@ import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Loading } from "../components/loading";
-import { VILLAGERS_QUERY } from "../mutations";
-import { VillagersQuery, VillagersQuery_villagers, VillagersQuery_villagers_villagers } from "../__generated__/VillagersQuery";
+import { VILLAGERSFILTER_QUERY, VILLAGERS_QUERY } from "../mutations";
+import { VillagersQuery, VillagersQueryVariables, VillagersQuery_villagers_villagers } from "../__generated__/VillagersQuery";
 // @ts-ignore
 import closeImg from '../images/close-menu.png';
+import { VillagersFilterQuery, VillagersFilterQuery_villagersFilter } from "../__generated__/VillagersFilterQuery";
 
 export const Villagers = () => {
     const navigation = useNavigate();
     const location = useLocation();
-    const [, species] = location.search.split("?specie=");
+    // const [, species] = location.search.split("?specie=");
     const { id: villagerId } = useParams();
+    const [searchName, setSearchName] = useState("");
+    const [searchSpecies, setSearchSpecies] = useState("");
+    const [searchPersonality, setSearchPersonality] = useState("");
     const [selectedVillager, setSelectedVillager] = useState<VillagersQuery_villagers_villagers | undefined>();
-    const { data: villagersData, loading } = useQuery<VillagersQuery, VillagersQuery_villagers>(VILLAGERS_QUERY);
+    const { data: villagersFilterData } = useQuery<VillagersFilterQuery, VillagersFilterQuery_villagersFilter>(VILLAGERSFILTER_QUERY);
+    const { data: villagersData, loading, refetch } = useQuery<VillagersQuery, VillagersQueryVariables>(VILLAGERS_QUERY);
     
     useEffect(() => {     
         setSelectedVillager(() =>  villagersData?.villagers.villagers?.find((villager) => villager.id + "" === villagerId));
     }, [villagerId]);
 
+    useEffect(() => {     
+        refetch({
+            villagersInput: {
+                name: searchName,
+                species: searchSpecies,
+                personality: searchPersonality
+            }
+        });
+    }, [searchSpecies, searchPersonality, searchName]);
+
     return (
         <>
             <div className="wrapper-search">
-                <select>
-                    <option value="">종류</option>                
+                <select defaultValue={searchSpecies} onChange={(event) => setSearchSpecies((curr) => event.target.value)}>
+                    <option value="">종류</option>
+                    {villagersFilterData?.villagersFilter.species?.map((data) => 
+                        <option key={data} value={data}>{data}</option>
+                    )}
                 </select>
 
-                <select>
-                    <option value="">성격</option>                
+                <select defaultValue={searchPersonality} onChange={(event) => setSearchPersonality((curr) => event.target.value)}>
+                    <option value="">성격</option>     
+                    {villagersFilterData?.villagersFilter.personalities?.map((data) => 
+                        <option key={data} value={data}>{data}</option>
+                    )}
                 </select>
 
-                <input type="text" placeholder="이름" />
+                <input type="text" placeholder="이름" value={searchName} onChange={(event) => setSearchName((curr) => event.target.value)} />
             </div>
             <div className="wrapper-villagers">
                 {!loading &&
