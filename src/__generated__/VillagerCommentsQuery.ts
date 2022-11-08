@@ -11,12 +11,15 @@ import { VillagerCommentsInput } from "./globalTypes";
 
 export interface VillagerCommentsQuery_villagersComments_comments_user {
   __typename: "User";
+  id: number;
   name: string;
 }
 
 export interface VillagerCommentsQuery_villagersComments_comments {
   __typename: "VillagerComment";
+  id: number;
   content: string;
+  createAt: any;
   user: VillagerCommentsQuery_villagersComments_comments_user | null;
 }
 

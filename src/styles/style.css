@@ -1,6 +1,6 @@
 .wrapper {width: 100%; margin: 0 auto; background-color: rgb(245, 244, 238); font-size: 14px;}
 header {position: fixed; top:0; left:0; width: 100%; height: 50px; line-height: 50px; padding: 0 20px; font-size: 14px; color: #4b4829; text-align: center; background-color: rgb(253, 251, 246); border-bottom: 1px solid rgb(211, 218, 208); z-index: 9;}
-.content {padding: 70px 20px 80px;}
+.content {padding: 50px 0 80px;}
 nav {position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; z-index: 9; display: flex; background-color: rgb(245, 244, 238); border-top: 1px solid rgb(211, 218, 208);}
 nav .footer-menu {width: 25%; line-height: 90px; text-align: center; color: rgb(75, 72, 41); font-size: 12px; cursor: pointer; background-repeat: no-repeat; background-position: center 10px; background-size: 24px; text-align: center; text-decoration: none;}
 nav .footer-menu.active {color: #248f81;}
@@ -19,7 +19,7 @@ nav .footer-menu.active {color: #248f81;}
 /*
 * Villagers
 */
-.wrapper-villagers {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
+.wrapper-villagers {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px; margin: 0 20px;}
 .villager {display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 0 10px; cursor: pointer;}
 .villager:nth-child(n+2) {border-top: 1px solid rgb(211, 218, 208);}
 .villager .vi-image {width: 100px; height: 80px; background-size: auto 60px; background-position: center; background-repeat: no-repeat;}
@@ -31,18 +31,27 @@ nav .footer-menu.active {color: #248f81;}
 .btn-page {width: 60px; height: 60px; line-height: 52px; border: 1px solid #248f81; border-radius: 50%; background-color: rgb(253, 251, 246); color: rgb(36, 143, 129);}
 
 
-.wrapper-villager-detail .villager-detail-inner {width: 100%; background-color: rgb(245, 244, 238); border: 1px solid rgb(211, 218, 208); border-radius: 10px 10px 0 0; overflow: hidden; text-align: center;}
+.wrapper-villager-detail .villager-detail-inner {width: 100%; background-color: rgb(245, 244, 238); text-align: center;}
 .wrapper-villager-detail .villager-detail-inner button {position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; outline: none; background-color: transparent; z-index: 9;}
 .wrapper-villager-detail .villager-detail-inner button img {width: 100%; vertical-align: middle;}
 .wrapper-villager-detail .villager-image {position: relative; background-color: rgb(253, 251, 246); text-align: center; padding: 30px 0;}
 .wrapper-villager-detail .villager-image img {height: 200px}
 .wrapper-villager-detail .villager-image span {position: absolute; bottom: -20px; left:calc(50% - 55px); display: inline-block; height: 40px; line-height: 40px; padding: 0 20px; background-color: #fff; font-size: 18px; font-weight: bold; text-align: center; border: 1px solid rgb(211, 218, 208); border-radius: 30px;}
 .wrapper-villager-detail .villager-image span i {font-size: 14px; font-style: normal; font-weight: 400; opacity: 0.6; margin-left: 5px;}
-.wrapper-villager-detail p {position: absolute; top: 290px; width: 100%; text-align: center;}
-.wrapper-villager-detail dl {display: inline-grid; grid-template-columns: 100px 200px; background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); margin: 50px 0 30px; padding: 10px 0; font-size: 14px; border-radius: 10px;}
-.wrapper-villager-detail dt {padding-left: 20px; line-height: 30px; text-align: left;}
-.wrapper-villager-detail dd {padding-left: 10px; line-height: 30px; text-align: left;}
-
+.wrapper-villager-detail p {width: 100%; padding: 45px 0 30px; text-align: center;}
+.wrapper-villager-detail .box-info {display: inline-grid; grid-template-columns:  1fr 1fr; grid-column-gap: 20px; grid-row-gap: 20px; width: 100%; padding: 0 20px 20px;}
+.wrapper-villager-detail .box-info dl {background-color: rgb(253, 251, 246); padding: 15px 0; border: 1px solid rgb(211, 218, 208); font-size: 14px; border-radius: 10px; color: #4b4829;}
+.wrapper-villager-detail .box-info dt {opacity: 0.8; font-size: 12px;}
+.wrapper-villager-detail .box-info dd {margin-top: 10px; font-size: 16px;}
+.form-comment {position: relative; padding: 0 20px;}
+.form-comment input {width: 100%; height: 35px; line-height: 35px; padding: 0 10px; outline: none; box-sizing: border-box; background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
+.form-comment button {position: absolute; top: 2px; right: 30px; height: 30px; border-radius: 5px; background-color: transparent;}
+.form-comment button.active {background-color: transparent; color: rgb(56, 143, 133);}
+.list-comment {margin-top: 5px; color: #4b4829;}
+.list-comment li {position: relative; background-color: rgb(226, 235, 232); padding: 10px 10px; border-radius: 10px; margin-bottom: 5px;}
+.list-comment li div {font-size: 12px; margin: 5px 0 0; opacity: 0.6;}
+.list-comment .comment-footer {display: flex; justify-content: space-between;}
+.list-comment button {right: 3px; top: 0px;}
 /*
 * Fishes
 */
@@ -84,7 +93,7 @@ nav .footer-menu.active {color: #248f81;}
 /*
 * search
 */ 
-.wrapper-search {margin-bottom: 20px;}
+.wrapper-search {margin: 20px 20px 20px;}
 .wrapper-search select {width: 120px; height: 30px; line-height: 32px; margin-right: 3px; padding: 0 10px; color: #4b4829; background-image: url('../images/page-up.png'); background-size: 10px; background-repeat: no-repeat; background-position: 98px center; background-color: #e9e8de; border: 0; border-radius: 5px; outline: none; -webkit-appearance:none; -moz-appearance:none; appearance:none; box-sizing: border-box; vertical-align: middle;}
 .wrapper-search input {width: calc(100% - 246px); height: 30px; line-height: 32px; padding: 0 10px; border-radius: 5px; background-color:rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); outline: none; box-sizing: border-box; vertical-align: middle;}
 

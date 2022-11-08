@@ -42,8 +42,11 @@ export const VILLAGERCOMMENTS_QUERY = gql`
         villagersComments(input: $villagerCommentsInput) {
             ok
             comments {
+                id
                 content
+                createAt
                 user {
+                    id
                     name
                 }
             }
