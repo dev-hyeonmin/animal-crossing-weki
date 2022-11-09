@@ -1,6 +1,7 @@
-.wrapper {width: 100%; margin: 0 auto; background-color: rgb(245, 244, 238); font-size: 14px;}
+body {background-color: rgb(245, 244, 238);}
+.wrapper {width: 100%; margin: 0 auto; font-size: 14px;}
 header {position: fixed; top:0; left:0; width: 100%; height: 50px; line-height: 50px; padding: 0 20px; font-size: 14px; color: #4b4829; text-align: center; background-color: rgb(253, 251, 246); border-bottom: 1px solid rgb(211, 218, 208); z-index: 9;}
-.content {padding: 50px 0 80px;}
+.content {min-height: -webkit-fill-available; padding: 50px 0 80px;}
 nav {position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; z-index: 9; display: flex; background-color: rgb(245, 244, 238); border-top: 1px solid rgb(211, 218, 208);}
 nav .footer-menu {width: 25%; line-height: 90px; text-align: center; color: rgb(75, 72, 41); font-size: 12px; cursor: pointer; background-repeat: no-repeat; background-position: center 10px; background-size: 24px; text-align: center; text-decoration: none;}
 nav .footer-menu.active {color: #248f81;}
@@ -20,12 +21,14 @@ nav .footer-menu.active {color: #248f81;}
 * Villagers
 */
 .wrapper-villagers {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px; margin: 0 20px;}
-.villager {display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 0 10px; cursor: pointer;}
 .villager:nth-child(n+2) {border-top: 1px solid rgb(211, 218, 208);}
+.villager {display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 0 10px; cursor: pointer;}
 .villager .vi-image {width: 100px; height: 80px; background-size: auto 60px; background-position: center; background-repeat: no-repeat;}
 .villager .vi-info {width: calc(100% - 0px); margin-left: 10px; padding: 15px 15px 15px 0;}
 .villager .vi-info dt {font-size: 14px; font-weight: bold; margin-bottom: 8px;}
 .villager .vi-info dd {font-size: 12px; color: #786951; opacity: 0.8; margin-top: 5px;}
+.villagers-not-found {display: flex; justify-items: center; align-items: center; flex-direction: column; padding: 100px 0; color: #4b4829;}
+.villagers-not-found img {margin-bottom: 20px; opacity: 0.6;}
 
 .box-button {display: flex; justify-content: center; margin-top: 20px;}
 .btn-page {width: 60px; height: 60px; line-height: 52px; border: 1px solid #248f81; border-radius: 50%; background-color: rgb(253, 251, 246); color: rgb(36, 143, 129);}
@@ -44,18 +47,18 @@ nav .footer-menu.active {color: #248f81;}
 .wrapper-villager-detail .box-info dt {opacity: 0.8; font-size: 12px;}
 .wrapper-villager-detail .box-info dd {margin-top: 10px; font-size: 16px;}
 .form-comment {position: relative; padding: 0 20px;}
-.form-comment input {width: 100%; height: 35px; line-height: 35px; padding: 0 10px; outline: none; box-sizing: border-box; background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
-.form-comment button {position: absolute; top: 2px; right: 30px; height: 30px; border-radius: 5px; background-color: transparent;}
+.form-comment input {width: 100%; height: 35px; line-height: 35px; padding: 0 45px 0 10px; outline: none; box-sizing: border-box; background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
+.form-comment button {position: absolute; top: 2px; right: 25px; height: 30px; border-radius: 5px; background-color: transparent;}
 .form-comment button.active {background-color: transparent; color: rgb(56, 143, 133);}
 .list-comment {margin-top: 5px; color: #4b4829;}
-.list-comment li {position: relative; background-color: rgb(226, 235, 232); padding: 10px 10px; border-radius: 10px; margin-bottom: 5px;}
-.list-comment li div {font-size: 12px; margin: 5px 0 0; opacity: 0.6;}
+.list-comment li {position: relative; line-height: 20px; background-color: rgb(226, 235, 232); padding: 10px 10px; border-radius: 10px; margin-bottom: 5px; color: #4b4829;}
+.list-comment li div {font-size: 12px; margin: 5px 0 0; color: #9a9a9a;}
 .list-comment .comment-footer {display: flex; justify-content: space-between;}
-.list-comment button {right: 3px; top: 0px;}
+.list-comment button {position: relative; top: auto; right: auto; height: auto; line-height: auto; color: rgb(56, 143, 133);}
 /*
 * Fishes
 */
-.wrapper-creature {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
+.wrapper-creature {background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px; margin: 20px;}
 .creature {display: flex; align-items: center; flex-wrap: wrap; justify-content: center; text-decoration: none; padding: 0 10px; cursor: pointer; overflow: hidden;}
 .creature:nth-child(n+2) {border-top: 1px solid rgb(211, 218, 208);}
 .creature .creature-image {width: 100px; height: 80px; background-size: auto 60px; background-position: center; background-repeat: no-repeat;}
@@ -84,8 +87,10 @@ nav .footer-menu.active {color: #248f81;}
 /*
 * loading
 */
-.loading .vi-image {position: relative; margin: 10px; background-color: #eee; overflow: hidden;}
-.loading dd {position: relative; height: 20px; background-color: #eee; overflow: hidden;}
+.loading-villagers > div:nth-child(n+2) {border-top: 1px solid rgb(211, 218, 208);}
+.loading .vi-image {position: relative; width: 80px; height: 60px; margin: 10px; background-color: #eee; overflow: hidden;}
+.loading .vi-info {padding-top: 10px;}
+.loading dd {position: relative; height: 18px; background-color: #eee; overflow: hidden;}
 .loading dd:nth-child(n+2) {margin-top: 3px;}
 
 .loading dd:after {content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0)); transform: translateX(-100%); -webkit-animation: loading 1.5s infinite; animation: loading 1.5s infinite;}

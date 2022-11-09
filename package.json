@@ -13,7 +13,7 @@
     "@types/react-dom": "^18.0.6",
     "apexcharts": "^3.36.0",
     "apollo": "^2.34.0",
-    "framer-motion": "^7.5.2",
+    "framer-motion": "^7.6.5",
     "graphql": "^15.8.0",
     "graphql-ws": "^5.11.2",
     "jquery": "^3.6.1",

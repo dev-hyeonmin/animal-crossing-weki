@@ -21,7 +21,7 @@ export const Villager = () => {
     const location = useLocation();
     const villager: VillagersQuery_villagers_villagers = location.state;
     const { id: villagerId } = useParams();
-    const { data: comments } = useQuery<VillagerCommentsQuery, VillagerCommentsQueryVariables>(VILLAGERCOMMENTS_QUERY, {
+    const { data: comments, refetch } = useQuery<VillagerCommentsQuery, VillagerCommentsQueryVariables>(VILLAGERCOMMENTS_QUERY, {
         variables: {
             villagerCommentsInput: {
                 villagerId: Number(villagerId),
@@ -31,6 +31,7 @@ export const Villager = () => {
     });
     const onCompleted = () => {
         reset();
+        refetch();
     };
     const [deleteVillagerCommentMutation]
         = useMutation<deleteVillagerCommentMutation, deleteVillagerCommentMutationVariables>(DELETEVILLAGERCOMMENT_MUTATION);
@@ -140,16 +141,16 @@ export const Villager = () => {
                                     <div className="comment-footer">
                                         <div className="comment-user">
                                             by. {comment.user?.name}
+
+                                            {comment.user?.id === user?.me.id &&
+                                                <button onClick={() => deleteComment(comment.id)}>delete</button>
+                                            }
                                         </div>
 
                                         <div className="comment-time">
                                             {comment.createAt.substr(0, 16)}
                                         </div>
-                                    </div>
-
-                                    {comment.user?.id === user?.me.id &&
-                                        <button onClick={() => deleteComment(comment.id)}>delete</button>
-                                    }
+                                    </div>                                    
                                 </li>
                             )}
                         </ul>
