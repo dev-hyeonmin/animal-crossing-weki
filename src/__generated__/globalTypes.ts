@@ -13,9 +13,17 @@ export interface CreateAccountInput {
   password: string;
 }
 
+export interface CreateFishInput {
+  name: string;
+}
+
 export interface CreateVillagerCommentInput {
   content: string;
   villagerId: number;
+}
+
+export interface DeleteFishInput {
+  name: string;
 }
 
 export interface DeleteVillagerCommentInput {

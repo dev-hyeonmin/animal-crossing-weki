@@ -40,6 +40,11 @@ export interface IVillager {
     }
 }
 
+interface IAvailableTime {
+    months: string;
+    time: string;
+}
+
 export interface IFishes {
     "url": string;
     "name": string;
@@ -61,6 +66,7 @@ export interface IFishes {
     "s_availability": string;
     "s_availability_array": [];
     "shadow_movement": string;
+    "availability_north": IAvailableTime[];
 }
 
 export interface IEvents {

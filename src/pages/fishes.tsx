@@ -2,6 +2,19 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Loading } from "../components/loading";
 import { IFishes } from "../constants/interface";
+import { useMutation, useQuery } from "@apollo/client";
+import { CREATEFISHRELATION_MUTATION, DELETEFISHRELATION_MUTATION, USERFISHES_QUERY } from "../mutations";
+import { UserFishesQuery, UserFishesQuery_userFishes } from "../__generated__/UserFishesQuery";
+// @ts-ignore
+import clockImg from '../images/clock.png';
+// @ts-ignore
+import moneyImg from '../images/money.png';
+// @ts-ignore
+import checkImg from '../images/check.png';
+// @ts-ignore
+import checkActiveImg from '../images/check-active.png';
+import { createFishRelation, createFishRelationVariables } from "../__generated__/createFishRelation";
+import { deleteFishRelation, deleteFishRelationVariables } from "../__generated__/deleteFishRelation";
 
 const toggleVariant = {
     disable: { height: "81px" },
@@ -12,8 +25,24 @@ export const Fishes = () => {
     const pageCount = 20;
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
+    const [myFishes, setMyFishes] = useState<String[]>([]);
     const [toggleArr, setToggleArr] = useState<Boolean[]>([]);
     const [fishes, setFishes] = useState<IFishes[]>([]);
+    const onCompleted = (data: UserFishesQuery) => {
+        const result:string[] = [];
+        const fishesData = data.userFishes.fishes;
+
+        fishesData?.map((fish) => {
+            result.push(fish.name);
+        });
+
+        setMyFishes(() => result);
+    }
+    const { data: userFishes } = useQuery<UserFishesQuery, UserFishesQuery_userFishes>(USERFISHES_QUERY, {
+        onCompleted
+    });
+    const [createFishRelationMutation] = useMutation<createFishRelation, createFishRelationVariables>(CREATEFISHRELATION_MUTATION);
+    const [deleteFishRelationMutation] = useMutation<deleteFishRelation, deleteFishRelationVariables>(DELETEFISHRELATION_MUTATION);
   
     useEffect(() => {
         if (!process.env.REACT_APP_NOOKIPEIA_KEY) { return; }
@@ -25,7 +54,7 @@ export const Fishes = () => {
                 'Accept-Version': '1.0.0'
             }
         }).then(response => response.json())
-            .then(data => {                
+            .then(data => {
                 setFishes(data);
                 setLoading(false);
             });
@@ -47,7 +76,39 @@ export const Fishes = () => {
             ...[!current[index]],
             ...current.slice(index + 1)
         ]);
-    }
+    };
+
+    const createFishRelation = (event: any, name: string) => {
+        event.stopPropagation();
+
+        createFishRelationMutation({
+            variables: {
+                createFishInput: {
+                    name
+                }
+            }
+        });
+        
+        setMyFishes((current) => {
+            current.push(name);
+            return current;
+        });
+    };
+
+    const deleteFishRelation = (event: any, name: string) => {
+        event.stopPropagation();
+
+        deleteFishRelationMutation({
+            variables: {
+                deleteFishInput: {
+                    name
+                }
+            }
+        });
+
+        setMyFishes((current) => current.filter((fish) => fish !== name))
+    };
+
     return (
         <>
         <div className="wrapper-creature">
@@ -69,13 +130,17 @@ export const Fishes = () => {
 
                     <dl className="creature-detail">
                         <dd>{fish.catchphrases}</dd>
-                        <dt>북반구</dt>
-                        <dd>{fish.n_availability}</dd>
-                        <dt>남반구</dt>
-                        <dd>{fish.s_availability}</dd>
-                        <dt>출몰시간</dt>
-                        <dd>{fish.time}</dd>
+                        <dt><img src={clockImg}/></dt>
+                        <dd>{fish.availability_north[0].months} <span>{fish.availability_north[0].time}</span></dd>
+                        <dt><img src={moneyImg}/></dt>
+                        <dd><b>{fish.sell_nook.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</b></dd>
                     </dl>
+
+                    {
+                        myFishes.includes(fish.name) 
+                            ? <span className="tag-gain active" onClick={(event) => deleteFishRelation(event, fish.name)}><img src={checkActiveImg} /></span>
+                            : <span className="tag-gain" onClick={(event) => createFishRelation(event, fish.name)}><img src={checkImg} /></span>
+                    }
                 </motion.div>
             )}   
             
