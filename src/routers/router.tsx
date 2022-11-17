@@ -1,15 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Header } from '../components/header';
 import { Footer } from '../components/footer';
-import { Bugs } from '../pages/bugs';
-import { Fishes } from '../pages/fishes';
-import { Seas } from '../pages/seas';
 import { Villagers } from '../pages/villagers';
 import { Events } from '../pages/events';
 import { Turnip } from '../pages/turnip';
 import { Login } from '../pages/user/login';
 import { CreateAccount } from '../pages/user/create-account';
 import { Villager } from '../pages/villager';
+import { Creatures } from '../pages/creatures';
 
 const routes = [
     {
@@ -22,15 +20,15 @@ const routes = [
     },
     {
         path: "/fishes",
-        element: <Fishes />
+        element: <Creatures />
     },
     {
         path: "/bugs",
-        element: <Bugs />
+        element: <Creatures />
     },
     {
         path: "/seas",
-        element: <Seas />
+        element: <Creatures />
     },
     {
         path: "/events",

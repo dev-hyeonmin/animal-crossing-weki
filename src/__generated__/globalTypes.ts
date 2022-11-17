@@ -13,7 +13,7 @@ export interface CreateAccountInput {
   password: string;
 }
 
-export interface CreateFishInput {
+export interface CreateCreatureInput {
   name: string;
 }
 
@@ -22,7 +22,7 @@ export interface CreateVillagerCommentInput {
   villagerId: number;
 }
 
-export interface DeleteFishInput {
+export interface DeleteCreatureInput {
   name: string;
 }
 

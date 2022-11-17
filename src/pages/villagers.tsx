@@ -7,7 +7,6 @@ import { VillagersQuery, VillagersQueryVariables, VillagersQuery_villagers_villa
 import { VillagersFilterQuery, VillagersFilterQuery_villagersFilter } from "../__generated__/VillagersFilterQuery";
 // @ts-ignore
 import notFoundImg from '../images/villager-not-found.png';
-import { motion } from "framer-motion";
 
 export const Villagers = () => {
     const { id: villagerId } = useParams();

@@ -62,7 +62,7 @@ export interface IFishes {
     "catchphrases": [],
     "time": string;
     "n_availability": string;
-    "n_availability_array": [];
+    "n_availability_array": string[];
     "s_availability": string;
     "s_availability_array": [];
     "shadow_movement": string;

@@ -2,13 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import { Villagers } from "../pages/villagers";
-import { Fishes } from "../pages/fishes";
-import { Bugs } from "../pages/bugs";
-import { Seas } from "../pages/seas";
 import { Events } from "../pages/events";
 import { Turnip } from "../pages/turnip";
 // @ts-ignore
 import closeMenu from '../images/close-menu.png';
+import { Creatures } from "../pages/creatures";
 
 const menuRoute = [
     {
@@ -18,17 +16,17 @@ const menuRoute = [
     },
     {
         path: "/fishes",
-        element: <Fishes />,
+        element: <Creatures />,
         name: "fishes"
     },
     {
         path: "/bugs",
-        element: <Bugs />,
+        element: <Creatures />,
         name: "bugs"
     },
     {
         path: "/seas",
-        element: <Seas />,
+        element: <Creatures />,
         name: "seas"
     },
     {

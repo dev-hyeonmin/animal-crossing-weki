@@ -67,13 +67,16 @@ nav .footer-menu.active {color: #248f81;}
 .creature .creature-info dd:nth-child(1) {font-weight: bold; font-size:14px;}
 .creature .creature-info dd:nth-child(2) {position: relative; display: inline-block; line-height: 18px; margin-top: 5px; color: #786951;}
 .creature .creature-info dd span {display: inline-block; line-height: 22px; margin-right: 3px; padding: 0 10px; text-align: center; background-color: #f5c24c; border-radius: 30px; vertical-align: middle;}
-.creature .creature-detail {width: 100%; padding: 0 20px 20px; overflow: hidden;}
+.creature .creature-detail {position: relative; width: 100%; padding: 0 20px 20px; overflow: hidden;}
 .creature .creature-detail dt {float: left; margin-top: 7px; width: 50px; line-height: 20px; font-size: 12px; color: #777; padding-left: 5px;}
 .creature .creature-detail dt img {width: 18px; vertical-align: middle;}
-.creature .creature-detail dd {float: left; width: calc(100% - 60px); line-height: 20px; color: #777}
+.creature .creature-detail dd {float: left; width: 100%; line-height: 20px;}
 .creature .creature-detail dd:nth-child(1) {width: 100%; color: #786951; margin-bottom: 10px;}
-.creature .creature-detail dd:nth-child(n+2) {margin-top: 7px;}
-.creature .creature-detail dd span {display: inline-block; margin-left: 10px; padding: 0 10px; background-color: #e1f2ec; border-radius: 2px; color:#4b4829;}
+.creature .creature-detail dd.months {display: grid; grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr; grid-column-gap: 5px; grid-row-gap: 5px;}
+.creature .creature-detail dd span {display: inline-block; background-color: #e1f2ec; border-radius: 2px; color:#4b4829; text-align: center; opacity: 0.4;}
+.creature .creature-detail dd span.active {opacity: 1;}
+.creature .creature-detail dd.time {font-weight: 500;}
+.creature .creature-detail dd.price {position: absolute; width: auto; right: 20px; bottom: 20px;}
 .creature .tag-gain {position: absolute; top: 22px; right: 30px; line-height: 36px; display: inline-block; width: 35px; height: 35px; border: 2px solid #248f81; border-radius: 50%; text-align: center;}
 .creature .tag-gain.active {background-color: #248f81;}
 .creature .tag-gain img {width: 16px;}

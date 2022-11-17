@@ -2,6 +2,7 @@ import VILLAGERS from './lang/villagers.json';
 
 export const CHART_DATA_KEY = 'chart';
 export const CHART_PATTERN_KEY = 'chart_pattern';
+export const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export const SPECIES = [
     { eng: "alligator", kor: "악어" },

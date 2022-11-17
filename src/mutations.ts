@@ -54,12 +54,12 @@ export const VILLAGERCOMMENTS_QUERY = gql`
     }
 `;
 
-export const USERFISHES_QUERY = gql`
-    query UserFishesQuery {
-        userFishes {
+export const USERCREATURES_QUERY = gql`
+    query UserCreaturesQuery {
+        userCreatures {
             ok
             error
-            fishes {
+            creatures {
                 name
             }
         }
@@ -84,18 +84,18 @@ export const DELETEVILLAGERCOMMENT_MUTATION = gql`
     }
 `;
 
-export const CREATEFISHRELATION_MUTATION = gql`
-    mutation createFishRelation ($createFishInput: CreateFishInput!) {
-        createFishRelation (input: $createFishInput) {
+export const CREATECREATURERELATION_MUTATION = gql`
+    mutation createCreatureRelation ($createCreatureInput: CreateCreatureInput!) {
+        createCreatureRelation (input: $createCreatureInput) {
             ok
             error
         }
     }
 `;
 
-export const DELETEFISHRELATION_MUTATION = gql`
-    mutation deleteFishRelation ($deleteFishInput: DeleteFishInput!) {
-        deleteFishRelation (input: $deleteFishInput) {
+export const DELETECREATURERELATION_MUTATION = gql`
+    mutation deleteCreatureRelation ($deleteCreatureInput: DeleteCreatureInput!) {
+        deleteCreatureRelation (input: $deleteCreatureInput) {
             ok
             error
         }
