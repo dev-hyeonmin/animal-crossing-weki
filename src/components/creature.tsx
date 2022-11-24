@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Loading } from "./loading";
 import { IFishes } from "../constants/interface";
 import { useMutation, useQuery } from "@apollo/client";
 import { months } from "../constants/common";
@@ -8,10 +7,6 @@ import { CREATECREATURERELATION_MUTATION, DELETECREATURERELATION_MUTATION, USERC
 import { UserCreaturesQuery, UserCreaturesQuery_userCreatures } from "../__generated__/UserCreaturesQuery";
 import { createCreatureRelation, createCreatureRelationVariables } from "../__generated__/createCreatureRelation";
 import { deleteCreatureRelation, deleteCreatureRelationVariables } from "../__generated__/deleteCreatureRelation";
-// @ts-ignore
-import clockImg from '../images/clock.png';
-// @ts-ignore
-import moneyImg from '../images/money.png';
 // @ts-ignore
 import checkImg from '../images/check.png';
 // @ts-ignore

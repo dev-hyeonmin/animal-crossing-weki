@@ -14,6 +14,8 @@ export interface meQuery_me {
   email: string;
   verified: boolean;
   userImage: string | null;
+  islandName: string | null;
+  islandCode: string | null;
 }
 
 export interface meQuery {

@@ -35,8 +35,6 @@ export const Login = () => {
             
             isLoggedInVar(true);
             authTokenVar(token);
-
-            navigation(-1);
         }
     };
     
@@ -62,13 +60,16 @@ export const Login = () => {
             <Helmet>
                 <title>Login | animal-crossing-weki</title>
             </Helmet>
-              
+            
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h3>Hello 👋</h3>
-                <h6>Please enter your detail.</h6>
+                <h3>안녕하세요! 👋</h3>
+                <h6>
+                    모여봐요 동물의 숲 위키에 오신 것을 환영합니다. <br />
+                    세계각국의 무인도 대표님들을 만날 준비가 되었나요?
+                </h6>
 
                 <dl>
-                    <dt>email</dt>
+                    <dt>이메일</dt>
                     <dd>
                         <input
                             type="email" 
@@ -79,7 +80,7 @@ export const Login = () => {
                         {errors.email?.type === "pattern" && <FormError errorMessage="Please enter a valid email." />}
                     </dd>
 
-                    <dt>password</dt>
+                    <dt>비밀번호</dt>
                     <dd>
                         <input
                             type="password" 
@@ -95,13 +96,13 @@ export const Login = () => {
                 <Button
                     loading={loading}
                     canClick={isValid}
-                    actionText="Login"
+                    actionText="로그인"
                 />
             </form>
 
             <div className="tag-create_account">
-                Don't have an account?
-                <Link to="/create-account">Sign up</Link>
+                아직 가입하지 않으셨나요?
+                <Link to="/create-account">회원가입</Link>
             </div>
         </div>
     )

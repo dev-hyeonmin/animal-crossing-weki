@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { Villagers } from "../pages/villagers";
 import { Events } from "../pages/events";
 import { Turnip } from "../pages/turnip";
+import { Creatures } from "../pages/creatures";
 // @ts-ignore
 import closeMenu from '../images/close-menu.png';
-import { Creatures } from "../pages/creatures";
 
 const menuRoute = [
     {

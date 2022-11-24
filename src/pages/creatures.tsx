@@ -10,9 +10,10 @@ export const Creatures = () => {
     const [loading, setLoading] = useState(true);
     const location = useLocation();
     const path = location.pathname;
-
+    
     useEffect(() => {
         if (!process.env.REACT_APP_NOOKIPEIA_KEY) { return; }
+        setLoading(true);
 
         let apiUrl = `${process.env.REACT_APP_NOOKIPEIA_URL}/nh/`;
         switch (path) {
@@ -38,7 +39,7 @@ export const Creatures = () => {
                 setData(data);
                 setLoading(false);
             });
-    }, []);
+    }, [path]);
 
 
     return <>

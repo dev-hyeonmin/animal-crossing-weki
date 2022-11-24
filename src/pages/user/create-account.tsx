@@ -11,6 +11,8 @@ interface IForm {
     email: string;
     password: string;
     checkPassword: string;
+    islandName: string;
+    islandCode: string;
 }
 
 const CREATEACCOUNT_MUTATION = gql`
@@ -41,7 +43,7 @@ export const CreateAccount = () => {
     });
     
     const onSubmit = () => {
-        const { name, email, password, checkPassword } = getValues();
+        const { name, email, password, checkPassword, islandName, islandCode } = getValues();
         
         if (password !== checkPassword) {
             alert("Please check password!");
@@ -53,7 +55,9 @@ export const CreateAccount = () => {
                 createAccountInput: {
                     name,
                     email,
-                    password
+                    password,
+                    islandName,
+                    islandCode
                 }
             },
         });
@@ -64,17 +68,19 @@ export const CreateAccount = () => {
     };
 
     return (
-        <div className="wrapper-login">
+        <div className="wrapper-login create-account">
             <Helmet>
                 <title>Create Account | animal-crossing-weki</title>
             </Helmet>
             
+            <button className="btn-back" onClick={() => goBack()}></button>
+
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h3>Create an account 🌱</h3>
-                <h6>Let's get started with you.</h6>
+                <h3>회원가입 🌱</h3>
+                <h6>개성있는 무인도의 대표님들을 만나러 가봐요!</h6>
 
                 <dl>
-                    <dt>name</dt>
+                    <dt>이름<em>*</em></dt>
                         <dd>
                         <input
                             type="name" 
@@ -84,7 +90,7 @@ export const CreateAccount = () => {
                         {errors.name?.type === "required" && <FormError errorMessage="Name is required." />}
                     </dd>
 
-                    <dt>email</dt>
+                    <dt>이메일<em>*</em></dt>
                     <dd>
                         <input
                             type="email" 
@@ -95,7 +101,7 @@ export const CreateAccount = () => {
                         {errors.email?.type === "pattern" && <FormError errorMessage="Please enter a valid email." />}
                     </dd>
 
-                    <dt>password</dt>
+                    <dt>비밀번호<em>*</em></dt>
                     <dd>
                         <input
                             type="password" 
@@ -106,7 +112,7 @@ export const CreateAccount = () => {
                         {errors.password?.type === "minLength" && <FormError errorMessage="Password must be more than 4 chars." />}
                     </dd>
 
-                    <dt>check password</dt>
+                    <dt>비밀번호 확인<em>*</em></dt>
                     <dd>
                         <input
                             type="password" 
@@ -116,20 +122,33 @@ export const CreateAccount = () => {
                         {errors.checkPassword?.type === "required" && <FormError errorMessage="Password is required." />}
                         {errors.checkPassword?.type === "minLength" && <FormError errorMessage="Password must be more than 4 chars." />}
                     </dd>
+
+                    <dt>섬이름</dt>
+                    <dd>
+                        <input
+                            type="text" 
+                            placeholder="islandName"
+                            {...register("islandName")}
+                        />
+                    </dd>
+
+                    <dt>꿈번지</dt>
+                    <dd>
+                        <input
+                            type="text" 
+                            placeholder="islandCode"
+                            {...register("islandCode")}
+                        />
+                    </dd>
                 </dl>
                 
                 {createAccountMutationResult?.createAccount.error && <FormError errorMessage={createAccountMutationResult?.createAccount.error}/>}
                 <Button
                     loading={loading}
                     canClick={isValid}
-                    actionText="Create Account"
+                    actionText="가입하기"
                 />
             </form>
-
-            <div className="box">
-                <span className="circle"></span>
-                <span className="blur"></span>
-            </div>
         </div>
     )
 };

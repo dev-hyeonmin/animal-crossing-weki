@@ -9,6 +9,8 @@ export const ME_QUERY = gql`
             email
             verified
             userImage
+            islandName
+            islandCode
         }
     }
 `;

@@ -4,14 +4,13 @@ import { Footer } from '../components/footer';
 import { Villagers } from '../pages/villagers';
 import { Events } from '../pages/events';
 import { Turnip } from '../pages/turnip';
-import { Login } from '../pages/user/login';
-import { CreateAccount } from '../pages/user/create-account';
 import { Villager } from '../pages/villager';
 import { Creatures } from '../pages/creatures';
+import { EditProfile } from '../pages/user/edit-profile';
 
 const routes = [
     {
-        path: "/",
+        path: "/villagers",
         element: <Villagers />
     },
     {
@@ -39,16 +38,12 @@ const routes = [
         element: <Turnip />
     },
     {
-        path: "/login",
-        element: <Login />
-    },
-    {
-        path: "/create-account",
-        element: <CreateAccount />,
+        path: "/edit-profile",
+        element: <EditProfile />,
     },
 ];
 
-export const AppRouter = () => {
+export const LoggedInRouter = () => {
     return (
         <BrowserRouter>
             <div className='wrapper'>

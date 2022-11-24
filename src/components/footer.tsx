@@ -1,4 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useReactiveVar } from '@apollo/client';
+import { isLoggedInVar } from '../apollo';
 // @ts-ignore
 import fishIcon from '../images/fishes.png';
 // @ts-ignore
@@ -15,25 +17,30 @@ import villagerActiveIcon from '../images/villager-active.png';
 import userIcon from '../images/user.png';
 // @ts-ignore
 import userActiveIcon from '../images/user-active.png';
-import { useReactiveVar } from '@apollo/client';
-import { isLoggedInVar } from '../apollo';
+
 
 const footerMenu = [
     {
         path: "/",
-        name: "villagers",
+        name: "주민",
         image: villagerIcon,
         imageActive: villagerActiveIcon
     },
     {
         path: "/fishes",
-        name: "fishes",
+        name: "생물",
         image: fishIcon,
         imageActive: fishActiveIcon
     },
     {
         path: "/bugs",
-        name: "bugs",
+        name: "아이템",
+        image: bugIcon,
+        imageActive: bugActiveIcon
+    },
+    {
+        path: "/turnip",
+        name: "무계산기",
         image: bugIcon,
         imageActive: bugActiveIcon
     },
@@ -47,7 +54,7 @@ export const Footer = () => {
     return (
         <nav>
             <>
-                {footerMenu.map((menu) => 
+                {/* {footerMenu.map((menu) => 
                     <Link
                         key={menu.path}
                         to="/"
@@ -55,23 +62,7 @@ export const Footer = () => {
                         style={{ backgroundImage: path === menu.path ? `url(${menu.imageActive})` : `url(${menu.image})` }}>
                         {menu.name}
                     </Link>
-                )}
-            
-                {isLoggedIn ?                     
-                    <Link
-                        to="/edit-profile"
-                        className={ path === '/edit-profile' ? "footer-menu active" : "footer-menu" }
-                        style={{ backgroundImage: path === '/edit-profile' ? `url(${userActiveIcon})` : `url(${userIcon})` }}>
-                        User
-                    </Link>
-                    : 
-                    <Link
-                        to="/login"
-                        className={ path === '/login' ? "footer-menu active" : "footer-menu" }
-                        style={{ backgroundImage: path === '/login' ? `url(${userActiveIcon})` : `url(${userIcon})` }}>
-                        User
-                    </Link> 
-                }                
+                )}                               */}
             </>
         </nav>
     );

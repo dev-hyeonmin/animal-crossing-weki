@@ -1,11 +1,13 @@
-.wrapper-login {position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 150px 30px; background-color: rgb(245, 244, 238);}
+.wrapper-login {position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 150px 30px; background-image: url('../images/background.jpg'); background-size: cover; background-position: center;}
 .wrapper-login input {width: 100%; height: 35px; line-height: 35px; padding: 0 15px; background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 5px; outline: none; box-sizing: border-box; transition: border 0.2s ease;}
 .wrapper-login input:focus {border: 1px solid rgb(56, 143, 133);}
 .wrapper-login form h3 {font-size: 18px;}
-.wrapper-login form h6 {margin-top: 5px; font-size: 14px; font-weight: 400;}
-.wrapper-login form dl {margin-top: 40px;}
+.wrapper-login form h6 {line-height: 20px; margin-top: 10px; font-size: 14px; font-weight: 400;}
+.wrapper-login form dl {margin-top: 20px;}
 .wrapper-login form dt {margin-top: 15px; padding: 0 5px; font-size: 12px;}
+.wrapper-login form dt em {color: red;}
 .wrapper-login form dd {margin-top: 5px;}
 .wrapper-login form button {width: 100%; height: 35px; margin-top: 20px; border-radius: 5px;}
-.wrapper-login .tag-create_account {margin-top: 20px; color: #827f65; font-weight: 300; text-align: center;}
+.wrapper-login .tag-create_account {margin-top: 20px; color: #827f65; font-size: 12px; font-weight: 300; text-align: center;}
 .wrapper-login .tag-create_account a {margin-left: 5px; color: rgb(56, 143, 133); font-weight: 400;}
+.wrapper-login.create-account {padding-top: 50px;}

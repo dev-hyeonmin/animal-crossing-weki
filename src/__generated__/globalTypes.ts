@@ -11,6 +11,8 @@ export interface CreateAccountInput {
   name: string;
   email: string;
   password: string;
+  islandName?: string | null;
+  islandCode?: string | null;
 }
 
 export interface CreateCreatureInput {
