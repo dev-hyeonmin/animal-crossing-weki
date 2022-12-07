@@ -1,9 +1,8 @@
 import { useMe } from "../hooks/useMe";
 import { Menu } from "./menu";
-import { PageUp } from "./pageup";
+import { Link } from "react-router-dom";
 // @ts-ignore
 import userImage from '../images/default-user.png';
-import { Link } from "react-router-dom";
 
 export const Header = () => {
     const { data: user } = useMe();
@@ -12,11 +11,9 @@ export const Header = () => {
         <header>
             <Menu />
 
-            {/* <Link to="/edit-profile" className="user">
-                <img src={user?.me.userImage ? user?.me.userImage : userImage} />                
-            </Link> */}
-
-            <PageUp />
+            <Link to="/edit-profile" className="user">
+                <img src={user?.me.userImage ? user?.me.userImage : userImage} />
+            </Link>
         </header>
     );
 }

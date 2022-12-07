@@ -7,8 +7,13 @@ import { Turnip } from '../pages/turnip';
 import { Villager } from '../pages/villager';
 import { Creatures } from '../pages/creatures';
 import { EditProfile } from '../pages/user/edit-profile';
+import { Main } from '../pages/main';
 
 const routes = [
+    {
+        path: "/",
+        element: <Main />
+    },
     {
         path: "/villagers",
         element: <Villagers />
@@ -49,15 +54,15 @@ export const LoggedInRouter = () => {
             <div className='wrapper'>
                 <Header />
 
-                <div className='content'>                                    
+                <div className='content'>
                     <Routes>
-                        {routes.map((route => 
+                        {routes.map((route =>
                             <Route key={route.path} path={route.path} element={route.element} />
                         ))}
                         <Route key='villager' path='/villagers/:id' element={<Villagers />} />
                     </Routes>
 
-                    <Footer />            
+                    <Footer />
                 </div>
             </div>
         </BrowserRouter>

@@ -33,6 +33,10 @@ export const Villagers = () => {
 
     return (
         <>
+            <div className="content-header">
+                <h1>Villagers</h1>
+            </div>
+            
             <div className="wrapper-search">
                 <select defaultValue={searchSpecies} onChange={(event) => setSearchSpecies((curr) => event.target.value)}>
                     <option value="">종류</option>

@@ -17,7 +17,14 @@ import villagerActiveIcon from '../images/villager-active.png';
 import userIcon from '../images/user.png';
 // @ts-ignore
 import userActiveIcon from '../images/user-active.png';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
+
+const menuVariant = {
+    disable: { bottom: "-50px" },
+    enable: { bottom: "20px" },
+}
 
 const footerMenu = [
     {
@@ -47,12 +54,45 @@ const footerMenu = [
 ];
 
 export const Footer = () => {
-    const location = useLocation();
-    const path = location.pathname;
-    const isLoggedIn = useReactiveVar(isLoggedInVar);
+    let beforeScrollY = 0;
+    let checkScroll = false;
+    const [showMenu, setShowMenu] = useState(true);
+    const handleScroll = () => {
+        if (checkScroll) return;
+        if (!checkScroll) {
+            checkScroll = true;
+            setTimeout(async () => {
+                scrollDirection();
+                checkScroll = false;
+            }, 1000);
+        }
+    };
+
+    const scrollDirection = () => {
+        if (window.pageYOffset > beforeScrollY) {
+            // down
+            setShowMenu(false);
+        } else {
+            // up
+            setShowMenu(true);
+        }
+        //이전 스크롤값 저장
+        beforeScrollY = window.pageYOffset;
+    }
+
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+    }, []);
 
     return (
-        <nav>
+        <motion.nav
+            variants={menuVariant}
+            initial="disable"
+            animate={showMenu ? "enable" : "disable"}
+            exit="disable"
+            transition={{ duration: 0.4 }}
+        >
             <>
                 {/* {footerMenu.map((menu) => 
                     <Link
@@ -64,6 +104,6 @@ export const Footer = () => {
                     </Link>
                 )}                               */}
             </>
-        </nav>
+        </motion.nav>
     );
 }
