@@ -10,7 +10,7 @@ import closeMenu from '../images/close-menu.png';
 
 const menuRoute = [
     {
-        path: "/",
+        path: "/villagers",
         element: <Villagers />,
         name: "villagers"
     },
@@ -29,21 +29,11 @@ const menuRoute = [
         element: <Creatures />,
         name: "seas"
     },
-    {
-        path: "/events",
-        element: <Events />,
-        name: "events"
-    },
-    {
-        path: "/turnip",
-        element: <Turnip />,
-        name: "turnip calculator"
-    },
 ];
 
 const toggleVariant = {
-    disable: { x: "-100%" },
-    enable: { x: "-50px" },
+    disable: { y: "-100%", opacity: 0 },
+    enable: { y: "0%", opacity: 1 },
 }
 
 export const Menu = () => {
@@ -57,30 +47,31 @@ export const Menu = () => {
     return (
         <>
             <div className="menu" onClick={() => setToggleMenu(true)}></div>
-                        
+
             {true &&
                 <motion.div
                     className={toggleMenu ? "box-menu active" : "box-menu"}
-                    key="box-menu"
-                    variants={toggleVariant}
-                    initial={"disable"}
-                    animate={toggleMenu ? "enable" : "disable"}
-                    exit={"disable"}
+                    onClick={() => setToggleMenu(false)}
                 >
-                    <button onClick={() => setToggleMenu(false)}><img src={closeMenu} /></button>
-                    
-                    <dl>
-                        {menuRoute.map((route) => 
-                            <dd key={`menu${route.name}`}>
-                                <Link
-                                    to={route.path}
-                                    className={path === route.path ? "active" : ""}
-                                >
-                                    {route.name}
-                                </Link>
-                            </dd>
-                        )}                        
-                    </dl>
+                    {/* <button onClick={() => setToggleMenu(false)}><img src={closeMenu} /></button> */}
+
+                    {menuRoute.map((route, index) =>
+                        <motion.div
+                            key={`menu${route.name}`}
+                            variants={toggleVariant}
+                            initial={"disable"}
+                            exit={"disable"}
+                            animate={toggleMenu ? "enable" : "disable"}
+                            transition={{ ease: "easeInOut", delay: 0.1 * index, duration: 0.4}}
+                        >
+                            <Link
+                                to={route.path}
+                                className={path === route.path ? "active" : ""}
+                            >
+                                {route.name}
+                            </Link>
+                        </motion.div>
+                    )}
                 </motion.div>
             }
         </>

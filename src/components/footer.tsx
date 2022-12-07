@@ -64,7 +64,7 @@ export const Footer = () => {
             setTimeout(async () => {
                 scrollDirection();
                 checkScroll = false;
-            }, 1000);
+            }, 500);
         }
     };
 
