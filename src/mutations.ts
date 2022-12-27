@@ -102,3 +102,24 @@ export const DELETECREATURERELATION_MUTATION = gql`
         }
     }
 `;
+
+export const MYFAVORITEVILLAGER_QUERY = gql`
+    query myFavoriteVillagerQuery {
+        myFavoriteVillager {
+            ok
+            error
+            favoriteVillagers {
+                id
+            }
+        }
+    }
+`;
+
+export const REGISTFAVORITEVILLAGER_MUTATION = gql`
+    mutation registFavoriteVillager ($registFavoriteVillagerInput: RegistFavoriteVillagerInput!) {
+        registFavoriteVillager (input: $registFavoriteVillagerInput) {
+            ok
+            error
+        }
+    }
+`;

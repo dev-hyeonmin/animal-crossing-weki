@@ -37,6 +37,10 @@ export interface LoginInput {
   password: string;
 }
 
+export interface RegistFavoriteVillagerInput {
+  villagerId: number;
+}
+
 export interface VerifyEmailInput {
   code: string;
 }

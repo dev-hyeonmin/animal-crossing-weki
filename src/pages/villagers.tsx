@@ -1,8 +1,8 @@
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Loading } from "../components/loading";
-import { VILLAGERSFILTER_QUERY, VILLAGERS_QUERY } from "../mutations";
+import { MYFAVORITEVILLAGER_QUERY, REGISTFAVORITEVILLAGER_MUTATION, VILLAGERSFILTER_QUERY, VILLAGERS_QUERY } from "../mutations";
 import { VillagersQuery, VillagersQueryVariables, VillagersQuery_villagers_villagers } from "../__generated__/VillagersQuery";
 import { VillagersFilterQuery, VillagersFilterQuery_villagersFilter } from "../__generated__/VillagersFilterQuery";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
@@ -12,6 +12,12 @@ import notFoundImg from '../images/villager-not-found.png';
 import maleIcon from '../images/male.png';
 // @ts-ignore
 import femaleIcon from '../images/female.png';
+// @ts-ignore
+import emptyHeartIcon from '../images/empty-heart.png';
+// @ts-ignore
+import heartIcon from '../images/heart.png';
+import { registFavoriteVillager, registFavoriteVillagerVariables } from "../__generated__/registFavoriteVillager";
+import { myFavoriteVillagerQuery, myFavoriteVillagerQuery_myFavoriteVillager } from "../__generated__/myFavoriteVillagerQuery";
 
 const headerMotion = {
     hidden: { opacity: 0 },
@@ -36,6 +42,12 @@ export const Villagers = () => {
     const [, setSelectedVillager] = useState<VillagersQuery_villagers_villagers | undefined>();
     const { data: villagersFilterData } = useQuery<VillagersFilterQuery, VillagersFilterQuery_villagersFilter>(VILLAGERSFILTER_QUERY);
     const { data: villagersData, loading, refetch } = useQuery<VillagersQuery, VillagersQueryVariables>(VILLAGERS_QUERY);
+    const { data: myFavoriteVillagerData, refetch: refetchFavor } = useQuery<myFavoriteVillagerQuery, myFavoriteVillagerQuery_myFavoriteVillager>(MYFAVORITEVILLAGER_QUERY);
+    const [registFavoriteVillagerMutation] = useMutation<registFavoriteVillager, registFavoriteVillagerVariables>(REGISTFAVORITEVILLAGER_MUTATION, {
+        onCompleted: () => {
+            refetchFavor();
+        }
+    });
 
     useEffect(() => {
         setSelectedVillager(() => villagersData?.villagers.villagers?.find((villager) => villager.id + "" === villagerId));
@@ -54,6 +66,20 @@ export const Villagers = () => {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({ target: ref });
     const y = useParallax(scrollYProgress, 100);
+
+    const registFavoriteVillager = (event: React.MouseEvent, villagerId: number) => {
+        event.stopPropagation();
+        event.preventDefault();
+        
+        registFavoriteVillagerMutation({
+            variables: {
+                registFavoriteVillagerInput: {
+                    villagerId
+                }
+            }
+        });
+    };
+
     return (
         <>
             <div className="content-header">
@@ -96,6 +122,9 @@ export const Villagers = () => {
                                 key={villager.name}
                                 className="villager">
                                 <div className="vi-image" style={{ backgroundImage: `url(${villager.icon?.replaceAll(" ", "%20")})` }}></div>
+                                <div className="btn-favorite" onClick={(event) => registFavoriteVillager(event, villager.id)}>
+                                    <img src={myFavoriteVillagerData?.myFavoriteVillager.favoriteVillagers.find(favor => favor.id === villager.id) ? heartIcon : emptyHeartIcon} />
+                                </div>
 
                                 <dl className="vi-info">
                                     <dt>
@@ -116,7 +145,7 @@ export const Villagers = () => {
                             <img src={notFoundImg} />
                             Not Found.
                         </div>
-                    }                    
+                    }
                 </div>
 
                 {loading &&
