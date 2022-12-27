@@ -123,3 +123,24 @@ export const REGISTFAVORITEVILLAGER_MUTATION = gql`
         }
     }
 `;
+
+export const MYVILLAGER_QUERY = gql`
+    query myVillagerQuery {
+        myVillager {
+            ok
+            error
+            myVillagers {
+                id
+            }
+        }
+    }
+`;
+
+export const REGISTMYVILLAGER_MUTATION = gql`
+    mutation registMyVillager ($registMyVillagerInput: RegistMyVillagerInput!) {
+        registMyVillager (input: $registMyVillagerInput) {
+            ok
+            error
+        }
+    }
+`;

@@ -41,6 +41,10 @@ export interface RegistFavoriteVillagerInput {
   villagerId: number;
 }
 
+export interface RegistMyVillagerInput {
+  villagerId: number;
+}
+
 export interface VerifyEmailInput {
   code: string;
 }

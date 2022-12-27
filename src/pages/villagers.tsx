@@ -2,7 +2,7 @@ import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Loading } from "../components/loading";
-import { MYFAVORITEVILLAGER_QUERY, REGISTFAVORITEVILLAGER_MUTATION, VILLAGERSFILTER_QUERY, VILLAGERS_QUERY } from "../mutations";
+import { MYFAVORITEVILLAGER_QUERY, MYVILLAGER_QUERY, REGISTFAVORITEVILLAGER_MUTATION, REGISTMYVILLAGER_MUTATION, VILLAGERSFILTER_QUERY, VILLAGERS_QUERY } from "../mutations";
 import { VillagersQuery, VillagersQueryVariables, VillagersQuery_villagers_villagers } from "../__generated__/VillagersQuery";
 import { VillagersFilterQuery, VillagersFilterQuery_villagersFilter } from "../__generated__/VillagersFilterQuery";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
@@ -16,8 +16,14 @@ import femaleIcon from '../images/female.png';
 import emptyHeartIcon from '../images/empty-heart.png';
 // @ts-ignore
 import heartIcon from '../images/heart.png';
+// @ts-ignore
+import emptyHomeIcon from '../images/empty-home.png';
+// @ts-ignore
+import homeIcon from '../images/home.png';
 import { registFavoriteVillager, registFavoriteVillagerVariables } from "../__generated__/registFavoriteVillager";
 import { myFavoriteVillagerQuery, myFavoriteVillagerQuery_myFavoriteVillager } from "../__generated__/myFavoriteVillagerQuery";
+import { myVillagerQuery, myVillagerQuery_myVillager } from "../__generated__/myVillagerQuery";
+import { registMyVillager, registMyVillagerVariables } from "../__generated__/registMyVillager";
 
 const headerMotion = {
     hidden: { opacity: 0 },
@@ -48,6 +54,12 @@ export const Villagers = () => {
             refetchFavor();
         }
     });
+    const { data: myVillagerData, refetch: refetchMyVillager } = useQuery<myVillagerQuery, myVillagerQuery_myVillager>(MYVILLAGER_QUERY);
+    const [registMyVillagerMutation] = useMutation<registMyVillager, registMyVillagerVariables>(REGISTMYVILLAGER_MUTATION, {
+        onCompleted: () => {
+            refetchMyVillager();
+        }
+    });
 
     useEffect(() => {
         setSelectedVillager(() => villagersData?.villagers.villagers?.find((villager) => villager.id + "" === villagerId));
@@ -70,10 +82,22 @@ export const Villagers = () => {
     const registFavoriteVillager = (event: React.MouseEvent, villagerId: number) => {
         event.stopPropagation();
         event.preventDefault();
-        
+
         registFavoriteVillagerMutation({
             variables: {
                 registFavoriteVillagerInput: {
+                    villagerId
+                }
+            }
+        });
+    };
+    const registMyVillager = (event: React.MouseEvent, villagerId: number) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        registMyVillagerMutation({
+            variables: {
+                registMyVillagerInput: {
                     villagerId
                 }
             }
@@ -114,16 +138,21 @@ export const Villagers = () => {
 
                 <div className="wrapper-villagers">
                     {!loading &&
-                        villagersData?.villagers?.villagers?.map((villager) =>
+                        villagersData?.villagers?.villagers?.map((villager, index) =>
                             villager.species !== 'NPC' &&
                             <Link
                                 to={`/villagers/${villager.id}`}
                                 state={villager}
                                 key={villager.name}
                                 className="villager">
+                                <span className="vi-index">#{index + 1}</span>
+                                <span className="vi-speak">{villager.speak}</span>
                                 <div className="vi-image" style={{ backgroundImage: `url(${villager.icon?.replaceAll(" ", "%20")})` }}></div>
                                 <div className="btn-favorite" onClick={(event) => registFavoriteVillager(event, villager.id)}>
                                     <img src={myFavoriteVillagerData?.myFavoriteVillager.favoriteVillagers.find(favor => favor.id === villager.id) ? heartIcon : emptyHeartIcon} />
+                                    </div>
+                                <div className="btn-home" onClick={(event) => registMyVillager(event, villager.id)}>
+                                    <img src={myVillagerData?.myVillager.myVillagers.find(myV => myV.id === villager.id) ? homeIcon : emptyHomeIcon} />
                                 </div>
 
                                 <dl className="vi-info">
