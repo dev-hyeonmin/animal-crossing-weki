@@ -8,6 +8,7 @@ export const VILLAGERS_QUERY = gql`
             villagers {
                 id
                 image
+                icon
                 species
                 name
                 personality

@@ -69,12 +69,12 @@ export const Footer = () => {
     };
 
     const scrollDirection = () => {
-        if (window.pageYOffset > beforeScrollY) {
-            // down
-            setShowMenu(false);
-        } else {
+        if (window.pageYOffset < beforeScrollY || window.pageYOffset < 100) {
             // up
             setShowMenu(true);
+        } else {
+            // down
+            setShowMenu(false);
         }
         //이전 스크롤값 저장
         beforeScrollY = window.pageYOffset;

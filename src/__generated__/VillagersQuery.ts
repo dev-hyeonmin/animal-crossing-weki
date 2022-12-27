@@ -13,6 +13,7 @@ export interface VillagersQuery_villagers_villagers {
   __typename: "Villager";
   id: number;
   image: string | null;
+  icon: string | null;
   species: string | null;
   name: string;
   personality: string | null;
