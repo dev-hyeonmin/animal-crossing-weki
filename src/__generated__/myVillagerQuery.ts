@@ -10,6 +10,8 @@
 export interface myVillagerQuery_myVillager_myVillagers {
   __typename: "Villager";
   id: number;
+  image: string | null;
+  name: string;
 }
 
 export interface myVillagerQuery_myVillager {

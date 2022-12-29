@@ -131,6 +131,8 @@ export const MYVILLAGER_QUERY = gql`
             error
             myVillagers {
                 id
+                image
+                name                
             }
         }
     }
