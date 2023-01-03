@@ -64,28 +64,42 @@ nav .footer-menu.active {color: #248f81;}
 .box-button {display: flex; justify-content: center; margin-top: 20px;}
 .btn-page {width: 60px; height: 60px; line-height: 52px; border: 1px solid #248f81; border-radius: 50%; background-color: rgb(253, 251, 246); color: rgb(36, 143, 129);}
 
-
-.wrapper-villager-detail .villager-detail-inner {width: 100%; background-color: rgb(245, 244, 238); text-align: center;}
-.wrapper-villager-detail .villager-detail-inner button {position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; outline: none; background-color: transparent; z-index: 9;}
-.wrapper-villager-detail .villager-detail-inner button img {width: 100%; vertical-align: middle;}
-.wrapper-villager-detail .villager-image {position: relative; background-color: rgb(253, 251, 246); text-align: center; padding: 30px 0;}
-.wrapper-villager-detail .villager-image img {height: 200px}
-.wrapper-villager-detail .villager-image span {position: absolute; bottom: -20px; left:calc(50% - 55px); display: inline-block; height: 40px; line-height: 40px; padding: 0 20px; background-color: #fff; font-size: 18px; font-weight: bold; text-align: center; border: 1px solid rgb(211, 218, 208); border-radius: 30px;}
-.wrapper-villager-detail .villager-image span i {font-size: 14px; font-style: normal; font-weight: 400; opacity: 0.6; margin-left: 5px;}
-.wrapper-villager-detail p {width: 100%; padding: 45px 0 30px; text-align: center;}
-.wrapper-villager-detail .box-info {display: inline-grid; grid-template-columns:  1fr 1fr; grid-column-gap: 20px; grid-row-gap: 20px; width: 100%; padding: 0 20px 20px;}
-.wrapper-villager-detail .box-info dl {background-color: rgb(253, 251, 246); padding: 15px 0; border: 1px solid rgb(211, 218, 208); font-size: 14px; border-radius: 10px; color: #4b4829;}
-.wrapper-villager-detail .box-info dt {opacity: 0.8; font-size: 12px;}
-.wrapper-villager-detail .box-info dd {margin-top: 10px; font-size: 16px;}
+.wrapper-villager-detail .villager-summary {position: relative; width: 100%; padding: 20px;}
+.wrapper-villager-detail .villager-summary button {position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; outline: none; background-color: transparent; z-index: 9;}
+.wrapper-villager-detail .villager-summary button img {width: 100%; vertical-align: middle;}
+.wrapper-villager-detail .villager-summary:after {content: ''; clear: both; display: block;}
+.wrapper-villager-detail .villager-summary {padding: 30px 0;}
+.wrapper-villager-detail .villager-summary .villager-image {float: left; width: 130px; text-align: center;}
+.wrapper-villager-detail .villager-summary .villager-image img {height: 145px;}
+.wrapper-villager-detail .villager-summary .villager-info {padding: 0 20px 0 130px;}
+.wrapper-villager-detail .villager-summary h5 {color: #777; font-weight: 400;}
+.wrapper-villager-detail .villager-summary h2 {margin-top: 5px;}
+.wrapper-villager-detail .villager-summary h2 img {width: 18px; vertical-align: middle;}
+.wrapper-villager-detail .villager-summary .btn-favorite {position: absolute; top: 25px; right: 18px; width: 24px;}
+.wrapper-villager-detail .villager-summary .btn-favorite img {width: 100%;}
+.wrapper-villager-detail .villager-summary .btn-home {position: absolute; top: 52px; right: 16px; width: 24px;}
+.wrapper-villager-detail .villager-summary .btn-home img {width: 20px;}
+.wrapper-villager-detail .villager-summary dl {display: flex; flex-flow: wrap;}
+.wrapper-villager-detail .villager-summary dt {width: 45px; line-height: 17px; margin-top: 5px; border: 1px solid #ddd; border-radius: 20px; text-align: center; font-size: 10px; color: #248f81;}
+.wrapper-villager-detail .villager-summary dd {width: calc(100% - 45px); line-height: 18px; margin-top: 5px; padding-left: 10px; font-size: 12px;}
+.wrapper-villager-detail .villager-summary ul {width: 100%; margin-top: 10px;}
+.wrapper-villager-detail .villager-summary ul li {position: relative; padding: 5px 10px; font-size: 12px; background-color: #eee; border-radius: 5px;}
+.wrapper-villager-detail .villager-summary ul li:nth-child(2) {margin-top: 5px;}
+.wrapper-villager-detail .villager-summary ul li span {position: absolute; top: 6px; right: 10px; font-weight: bold;}
+.wrapper-villager-detail .box-talk {border-top: 10px solid #eee; padding: 10px 20px;}
+.wrapper-villager-detail .box-info {border-top: 10px solid #eee; padding: 20px 20px; background-repeat: no-repeat; background-position: calc(100% - 10px) 10px; background-size: 50px;}
+.wrapper-villager-detail .box-info dl {display: inline-flex; width: 50%; font-size: 14px; margin-bottom: 10px;}
+.wrapper-villager-detail .box-info dt {width: 80px; opacity: 0.8;}
 .form-comment {position: relative; padding: 0 20px;}
-.form-comment input {width: 100%; height: 35px; line-height: 35px; padding: 0 45px 0 10px; outline: none; box-sizing: border-box; background-color: rgb(253, 251, 246); border: 1px solid rgb(211, 218, 208); border-radius: 10px;}
+.form-comment input {width: 100%; height: 35px; line-height: 35px; padding: 0 45px 0 10px; outline: none; box-sizing: border-box; background-color: #eee; border: 1px solid transparent; border-radius: 5px;}
 .form-comment button {position: absolute; top: 2px; right: 25px; height: 30px; border-radius: 5px; background-color: transparent;}
 .form-comment button.active {background-color: transparent; color: rgb(56, 143, 133);}
 .list-comment {margin-top: 5px; color: #4b4829;}
-.list-comment li {position: relative; line-height: 20px; background-color: rgb(226, 235, 232); padding: 10px 10px; border-radius: 10px; margin-bottom: 5px; color: #4b4829;}
-.list-comment li div {font-size: 12px; margin: 5px 0 0; color: #9a9a9a;}
+.list-comment li {position: relative; line-height: 20px; padding: 10px 3px; border-radius: 10px; margin-bottom: 5px; color: #4b4829; font-size: 12px;}
+.list-comment li div {font-size: 10px; color: #bbb;}
+.list-comment .comment-user {color: #222; font-size: 14px; font-weight: bold;}
 .list-comment .comment-footer {display: flex; justify-content: space-between;}
-.list-comment button {position: relative; top: auto; right: auto; height: auto; line-height: auto; color: rgb(56, 143, 133);}
+.list-comment button {position: absolute; top: auto; right: 3px; height: auto; margin: 0; line-height: auto; color: rgb(56, 143, 133);}
 /*
 * Fishes
 */
