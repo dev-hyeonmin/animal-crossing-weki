@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { FruitType, FlowerType, HemisphereType } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: meQuery
 // ====================================================
@@ -16,6 +18,9 @@ export interface meQuery_me {
   userImage: string | null;
   islandName: string | null;
   islandCode: string | null;
+  fruit: FruitType | null;
+  flower: FlowerType | null;
+  hemisphere: HemisphereType | null;
 }
 
 export interface meQuery {

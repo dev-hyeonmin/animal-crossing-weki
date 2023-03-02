@@ -7,12 +7,40 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum FlowerType {
+  Anemone = "Anemone",
+  Chry = "Chry",
+  Cosmos = "Cosmos",
+  Hyacinth = "Hyacinth",
+  Lily = "Lily",
+  Pansy = "Pansy",
+  Rose = "Rose",
+  Tulip = "Tulip",
+}
+
+export enum FruitType {
+  Apple = "Apple",
+  Cherry = "Cherry",
+  Orange = "Orange",
+  Peach = "Peach",
+  Pear = "Pear",
+}
+
+export enum HemisphereType {
+  Northern = "Northern",
+  Southern = "Southern",
+}
+
 export interface CreateAccountInput {
-  name: string;
-  email: string;
-  password: string;
+  name?: string | null;
+  email?: string | null;
+  password?: string | null;
+  userImage?: string | null;
   islandName?: string | null;
   islandCode?: string | null;
+  fruit?: FruitType | null;
+  flower?: FlowerType | null;
+  hemisphere?: HemisphereType | null;
 }
 
 export interface CreateCreatureInput {
@@ -30,6 +58,18 @@ export interface DeleteCreatureInput {
 
 export interface DeleteVillagerCommentInput {
   id: number;
+}
+
+export interface EditProfileInput {
+  name?: string | null;
+  email?: string | null;
+  password?: string | null;
+  userImage?: string | null;
+  islandName?: string | null;
+  islandCode?: string | null;
+  fruit?: FruitType | null;
+  flower?: FlowerType | null;
+  hemisphere?: HemisphereType | null;
 }
 
 export interface LoginInput {

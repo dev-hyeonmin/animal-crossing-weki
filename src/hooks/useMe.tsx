@@ -11,6 +11,9 @@ export const ME_QUERY = gql`
             userImage
             islandName
             islandCode
+            fruit
+            flower
+            hemisphere
         }
     }
 `;

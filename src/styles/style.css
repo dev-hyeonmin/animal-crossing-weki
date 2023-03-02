@@ -25,13 +25,19 @@ nav .footer-menu.active {color: #248f81;}
 
 .content-header {display: flex; align-items: flex-end; height: 100px; padding: 0 30px; z-index: 0;}
 .content-body { padding: 30px 0 0; z-index: 9;}
+
 /*
 * Main
 */
 .wrapper-main {padding: 50px 20px 20px;}
 .wrapper-main h6 {color: #bbb; font-weight: 400; font-size: 10px;}
 .wrapper-main h3 {margin-top: 5px; }
-.wrapper-main .my-island {margin-top: 20px; width: 100%; height: 120px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(85,85,85,.1);}
+.wrapper-main .my-island {padding: 30px 0; margin-top: 20px; width: 100%; border-radius: 10px; box-shadow: 0px 0px 10px rgba(85,85,85,.1);}
+.wrapper-main .my-island ul:after {content: ""; clear: both; display: block;}
+.wrapper-main .my-island ul li {float: left; width: 33.33%; text-align: center;}
+.wrapper-main .my-island ul li span {display: inline-block; width: 60px; height: 60px; background-color: #ffedcc; border-radius: 50%; margin-bottom: 5px;}
+.wrapper-main .my-island .box-turnip {margin: 30px 20px 0; padding: 30px 20px 0; border-top: 1px solid #ddd;}
+.wrapper-main .my-island .box-turnip span {float: right; font-weight: bold;}
 .main-villager {margin-top: 50px;}
 .main-villager .main-title {font-size: 20px; font-weight: 500;}
 .main-villager .main-title a {float: right; padding-top: 5px; text-decoration: none; font-size: 12px; color: #bbb; font-weight: 400;}

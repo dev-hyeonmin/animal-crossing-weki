@@ -20,8 +20,32 @@ export const Main = () => {
             <h3>{user?.me.islandName}</h3>
 
             <div className="my-island">
-                
+                <ul>
+                    <li>
+                        <span></span>
+                        <br />
+                        {user?.me.fruit}
+                    </li>
+
+                    <li>
+                        <span></span>
+                        <br />
+                        {user?.me.flower}
+                    </li>
+
+                    <li>
+                        <span></span>
+                        <br />
+                        {user?.me.hemisphere}
+                    </li>
+                </ul>
+
+                <div className="box-turnip">
+                    Turnips
+                    <span>97 bell</span>
+                </div>
             </div>
+
             <div className="main-villager">
                 <div className="main-title">
                     Villagers

@@ -11,3 +11,17 @@
 .wrapper-login .tag-create_account {margin-top: 20px; color: #827f65; font-size: 12px; font-weight: 300; text-align: center;}
 .wrapper-login .tag-create_account a {margin-left: 5px; color: rgb(56, 143, 133); font-weight: 400;}
 .wrapper-login.create-account {padding-top: 50px;}
+
+.wrapper-edit-profile {display: flex; align-items: center; justify-content: center; padding: 60px 0;}
+.wrapper-edit-profile dl {width: 250px;}
+.wrapper-edit-profile dl dt {margin-top: 15px; font-size: 12px;}
+.wrapper-edit-profile dl dd {width: 100%; margin-top: 5px;}
+.wrapper-edit-profile dl dd > span:nth-child(n+2) {margin-left: 5px;}
+.wrapper-edit-profile dl dd > span:nth-child(6n) {margin-left: 0;}
+.wrapper-edit-profile input {width: 100%; height: 30px; line-height: 30px; border: 1px solid #ddd; padding: 0 10px; box-sizing: border-box;}
+.wrapper-edit-profile input:disabled {background-color: #ddd;}
+.wrapper-edit-profile input[type='radio'] {display: none;}
+.wrapper-edit-profile label {display: inline-block; width: calc(20% - 5px); height: 45px; margin-bottom: 3px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; cursor: pointer;}
+.wrapper-edit-profile label:nth-child(n+3) {margin-left: 5px;}
+.wrapper-edit-profile label:nth-child(11n+1) {margin-left: 0;}
+.wrapper-edit-profile input[type='radio']:checked + label {background-color: #ddd;}
